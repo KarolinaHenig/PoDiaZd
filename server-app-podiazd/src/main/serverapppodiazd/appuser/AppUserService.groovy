@@ -1,4 +1,4 @@
-package com.example.serverapppodiazd.appuser
+package main.serverapppodiazd.appuser
 
 import lombok.AllArgsConstructor
 import org.springframework.security.core.userdetails.UserDetails
@@ -14,14 +14,14 @@ class AppUserService implements UserDetailsService {
     private final static String USER_NOT_FOUND_MSG =
             "user with email %s not found";
 
-    private final UserRepository userRepository;
+    private final AppUserRepository appUserRepository;
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
 
     @Override
-    public UserDetails loadUserByUsername(String email)
+    UserDetails loadUserByUsername(String email)
             throws UsernameNotFoundException {
-        return userRepository.findByEmail(email)
+        return appUserRepository.findByEmail(email)
                 .orElseThrow({ ->
                     new UsernameNotFoundException(
                             String.format(USER_NOT_FOUND_MSG, email))

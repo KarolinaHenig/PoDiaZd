@@ -1,4 +1,4 @@
-package com.example.serverapppodiazd
+package main.serverapppodiazd
 
 import org.springframework.boot.SpringApplication
 import org.springframework.boot.autoconfigure.SpringBootApplication

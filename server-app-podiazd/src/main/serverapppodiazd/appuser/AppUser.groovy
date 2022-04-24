@@ -1,4 +1,5 @@
-package com.example.serverapppodiazd.appuser
+package main.serverapppodiazd.appuser
+
 
 import lombok.EqualsAndHashCode
 import lombok.Getter
@@ -61,6 +62,8 @@ class AppUser implements UserDetails{
         this.locked = locked
         this.enabled = enabled
     }
+
+    AppUser() {}
 
     @Override
     Collection<? extends GrantedAuthority> getAuthorities() {

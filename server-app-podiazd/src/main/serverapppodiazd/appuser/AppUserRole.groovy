@@ -1,4 +1,4 @@
-package com.example.serverapppodiazd.appuser
+package main.serverapppodiazd.appuser
 
 enum AppUserRole {
     USER,

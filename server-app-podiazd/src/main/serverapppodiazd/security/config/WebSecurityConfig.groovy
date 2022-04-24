@@ -1,7 +1,8 @@
-package com.example.serverapppodiazd.security.config
+package main.serverapppodiazd.security.config
 
-import com.example.serverapppodiazd.appuser.AppUserService
 import lombok.AllArgsConstructor
+import main.serverapppodiazd.appuser.AppUserService
+import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider
@@ -16,8 +17,10 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
 @EnableWebSecurity
 class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
+    @Autowired
     @SuppressWarnings('GrFinalVariableAccess')
     private final AppUserService appUserService
+    @Autowired
     @SuppressWarnings('GrFinalVariableAccess')
     private final BCryptPasswordEncoder bCryptPasswordEncoder
 
@@ -30,7 +33,6 @@ class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .permitAll()
                 .anyRequest()
                 .authenticated().and()
-
 
 
     }

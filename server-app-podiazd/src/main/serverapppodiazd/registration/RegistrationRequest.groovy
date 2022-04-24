@@ -1,4 +1,4 @@
-package com.example.serverapppodiazd.registration
+package main.serverapppodiazd.registration
 
 import lombok.AllArgsConstructor
 import lombok.EqualsAndHashCode

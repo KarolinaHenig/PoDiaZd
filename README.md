@@ -1,2 +1,0 @@
-# PoDiaZd
-podiazd

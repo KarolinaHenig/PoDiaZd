@@ -14,7 +14,7 @@ class PodiazdApplication {
         SpringApplication.run(PodiazdApplication, args)
     }
 
-    @Bean
+/*    @Bean
     CommandLineRunner runner(AppUserRepository appUserRepository) {
         return { args ->
             AppUser user = new AppUser()
@@ -23,6 +23,6 @@ class PodiazdApplication {
             user.password = "test"
             appUserRepository.save(user)
         };
-    }
+    }*/
 
 }

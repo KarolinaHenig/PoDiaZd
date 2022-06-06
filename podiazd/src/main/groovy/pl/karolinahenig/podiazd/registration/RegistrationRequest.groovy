@@ -1,18 +1,34 @@
 package pl.karolinahenig.podiazd.registration
 
-import lombok.AllArgsConstructor
 import lombok.EqualsAndHashCode
-import lombok.Getter
 import lombok.ToString
+import org.springframework.beans.factory.annotation.Autowired
 
-@Getter
-@AllArgsConstructor
 @EqualsAndHashCode
 @ToString
 class RegistrationRequest {
+    @Autowired
     final String name
+    @Autowired
     final String surname
-    final String login
+    @Autowired
     final String email
+    @Autowired
     final String password
+
+    String getName() {
+        return name
+    }
+
+    String getSurname() {
+        return surname
+    }
+
+    String getEmail() {
+        return email
+    }
+
+    String getPassword() {
+        return password
+    }
 }

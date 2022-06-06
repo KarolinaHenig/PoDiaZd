@@ -4,6 +4,8 @@ import lombok.AllArgsConstructor
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
+import org.springframework.mail.javamail.JavaMailSender
+import org.springframework.mail.javamail.JavaMailSenderImpl
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder
 import org.springframework.security.config.annotation.web.builders.HttpSecurity
@@ -33,8 +35,6 @@ class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .permitAll()
                 .anyRequest()
                 .authenticated().and()
-
-
     }
 
     @Override
@@ -50,4 +50,9 @@ class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         provider.setUserDetailsService(appUserService)
         return provider
     }
+    @Bean
+    JavaMailSender javaMailSender() {
+        return new JavaMailSenderImpl();
+    }
+
 }

@@ -2,9 +2,7 @@ package pl.karolinahenig.podiazd.appuser
 
 
 import lombok.EqualsAndHashCode
-import lombok.Getter
 import lombok.NoArgsConstructor
-import lombok.Setter
 import org.springframework.security.core.GrantedAuthority
 import org.springframework.security.core.authority.SimpleGrantedAuthority
 import org.springframework.security.core.userdetails.UserDetails
@@ -15,48 +13,32 @@ import javax.persistence.Enumerated
 import javax.persistence.GeneratedValue
 import javax.persistence.GenerationType
 import javax.persistence.Id
-import javax.persistence.OneToMany
-import javax.persistence.SequenceGenerator
 
-
-@Getter
-@Setter
 @EqualsAndHashCode
 @NoArgsConstructor
 @Entity
-class AppUser implements UserDetails{
+class AppUser implements UserDetails {
 
     @Id
-    @SequenceGenerator(
-            name =  "user_id",
-            sequenceName = "user_id",
-            allocationSize = 1
-    )
-    @GeneratedValue(
-            strategy = GenerationType.SEQUENCE,
-            generator = "user_id"
-    )
-
+    @GeneratedValue (strategy = GenerationType.IDENTITY)
     private Long id
     private String name
-    private String username
+    private String surname
     private String email
     private String password
     @Enumerated(EnumType.STRING)
     private AppUserRole appUserRole
-    private Boolean locked
-    private Boolean enabled
+    private Boolean locked = false
+    private Boolean enabled = false
 
     AppUser(String name,
-            String username,
+            String surname,
             String email,
             String password,
-            AppUserRole appUserRole,
-            Boolean locked,
-            Boolean enabled) {
+            AppUserRole appUserRole) {
 
         this.name = name
-        this.username = username
+        this.surname = surname
         this.email = email
         this.password = password
         this.appUserRole = appUserRole
@@ -76,6 +58,66 @@ class AppUser implements UserDetails{
     @Override
     String getPassword() {
         return password
+    }
+
+    void setPassword(String password) {
+        this.password = password
+    }
+
+    Long getId() {
+        return id
+    }
+
+    void setId(Long id) {
+        this.id = id
+    }
+
+    String getName() {
+        return name
+    }
+
+    void setName(String name) {
+        this.name = name
+    }
+
+    String getSurname() {
+        return surname
+    }
+
+    void setSurname(String surname) {
+        this.surname = surname
+    }
+
+    String getEmail() {
+        return email
+    }
+
+    void setEmail(String email) {
+        this.email = email
+    }
+
+    AppUserRole getAppUserRole() {
+        return appUserRole
+    }
+
+    void setAppUserRole(AppUserRole appUserRole) {
+        this.appUserRole = appUserRole
+    }
+
+    Boolean getLocked() {
+        return locked
+    }
+
+    void setLocked(Boolean locked) {
+        this.locked = locked
+    }
+
+    Boolean getEnabled() {
+        return enabled
+    }
+
+    void setEnabled(Boolean enabled) {
+        this.enabled = enabled
     }
 
     @Override

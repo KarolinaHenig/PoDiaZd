@@ -40,8 +40,11 @@ class RegistrationService {
                 )
         )
 
-        String link = "https://localhost:8080/api/v1/registration/confirm?token=" + token;
-        emailSender.send(request.getEmail(), buildEmail(request.getName(), ) )
+        String link = "http://localhost:8080/api/v1/registration/confirm?token=" + token;
+        emailSender.send(
+                request.getEmail(),
+                buildEmail(request.getName(), link))
+
         return token
     }
 
@@ -60,7 +63,7 @@ class RegistrationService {
         LocalDateTime expiredAt = confirmationToken.getExpiresAt()
 
         if (expiredAt.isBefore(LocalDateTime.now())) {
-            throw new IllegalStateException("Token został potwierdzony")
+            throw new IllegalStateException("Mail wygasł")
         }
         confimationTokenService.setConfirmedAt(token)
         appUserService.enableAppUser(

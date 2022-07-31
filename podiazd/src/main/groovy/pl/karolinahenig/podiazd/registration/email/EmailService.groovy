@@ -4,6 +4,7 @@ import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.context.annotation.Bean
 import org.springframework.mail.javamail.JavaMailSender
+import org.springframework.mail.javamail.JavaMailSenderImpl
 import org.springframework.mail.javamail.MimeMessageHelper
 import org.springframework.scheduling.annotation.Async
 import org.springframework.stereotype.Service
@@ -18,7 +19,7 @@ class EmailService implements EmailSender {
     private final static org.slf4j.Logger LOGGER = LoggerFactory
             .getLogger(EmailService.class)
     @Autowired
-    private final JavaMailSender mailSender
+    private final JavaMailSenderImpl mailSender
 
     @Override
     @Async
@@ -31,6 +32,7 @@ class EmailService implements EmailSender {
             helper.setTo(to)
             helper.setSubject("Zweryfikuj swój email")
             helper.setFrom("hello@podiazd.com")
+            mailSender.send(mimeMessage)
         } catch (MessagingException e) {
             LOGGER.error("Podczas wysyłania maila wystąpił błąd", e)
             throw new IllegalStateException("Podczas wysyłania maila wystąpił błąd")

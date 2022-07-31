@@ -41,6 +41,9 @@ class AppUserService implements UserDetailsService {
                 .isPresent()
 
         if (userExists) {
+            //TODO check of attribute are the same and
+            // TODO if email not confirmation send confirmation email.
+
             throw new IllegalStateException("Podany email już istnieje")
         }
 

@@ -4,8 +4,7 @@ import org.springframework.boot.CommandLineRunner
 import org.springframework.boot.SpringApplication
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.context.annotation.Bean
-import pl.karolinahenig.podiazd.appuser.AppUser
-import pl.karolinahenig.podiazd.appuser.AppUserRepository
+import org.springframework.mail.javamail.JavaMailSenderImpl
 
 @SpringBootApplication
 class PodiazdApplication {
@@ -14,15 +13,17 @@ class PodiazdApplication {
         SpringApplication.run(PodiazdApplication, args)
     }
 
-/*    @Bean
-    CommandLineRunner runner(AppUserRepository appUserRepository) {
-        return { args ->
-            AppUser user = new AppUser()
-            user.enabled = true
-            user.username = "test"
-            user.password = "test"
-            appUserRepository.save(user)
-        };
-    }*/
+    @Bean
+     JavaMailSenderImpl mailSender() {
+        JavaMailSenderImpl javaMailSender = new JavaMailSenderImpl();
+
+        javaMailSender.setProtocol("smtp");
+        javaMailSender.setHost("127.0.0.1");
+        javaMailSender.setPort(1025);
+        javaMailSender.setUsername("hello")
+        javaMailSender.setPassword("hello")
+
+        return javaMailSender;
+    }
 
 }

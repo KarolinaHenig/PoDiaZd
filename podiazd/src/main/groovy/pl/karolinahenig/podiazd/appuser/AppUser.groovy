@@ -122,7 +122,7 @@ class AppUser implements UserDetails {
 
     @Override
     String getUsername() {
-        return username
+        return email
     }
 
     @Override

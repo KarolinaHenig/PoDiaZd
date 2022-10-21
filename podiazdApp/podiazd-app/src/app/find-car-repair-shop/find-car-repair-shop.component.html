@@ -1,0 +1,129 @@
+<mat-horizontal-stepper [linear]="isLinear" #stepper>
+    <mat-step [stepControl]="firstFormGroup">
+        <form [formGroup]="firstFormGroup">
+            <ng-template matStepLabel>Car selection</ng-template>
+
+            <mat-form-field class="select">
+                <mat-label>Brand</mat-label>
+                <select matNativeControl formControlName="brand" required>
+                    <option value="brand1">Brand1</option>
+                    <option value="brand2">Brand2</option>
+                </select>
+            </mat-form-field>
+
+            <mat-form-field class="select" *ngIf="this.firstFormGroup.controls['brand'].value">
+                <mat-label>Model</mat-label>
+                <select matNativeControl formControlName="model" required>
+                    <option value="model1">Model1</option>
+                    <option value="model2">Model2</option>
+                </select>
+            </mat-form-field>
+
+            <mat-form-field class="select" *ngIf="this.firstFormGroup.controls['model'].value">
+                <mat-label>Generation</mat-label>
+                <select matNativeControl formControlName="generation" required>
+                    <option value="generation1">generation1</option>
+                    <option value="generation2">generation2</option>
+                </select>
+            </mat-form-field>
+
+            <mat-form-field class="select" *ngIf="this.firstFormGroup.controls['generation'].value">
+                <mat-label>Body type</mat-label>
+                <select matNativeControl formControlName="bodyType" required>
+                    <option value="body1">Body1</option>
+                    <option value="body2">Body2</option>
+                </select>
+            </mat-form-field>
+
+            <mat-form-field class="select" *ngIf="this.firstFormGroup.controls['bodyType'].value">
+                <mat-label>Type of fuel</mat-label>
+                <select matNativeControl formControlName="typeOfFuel" required>
+                    <option value="fuel1">fuel1</option>
+                    <option value="fuel2">fuel2</option>
+                </select>
+            </mat-form-field>
+
+            <mat-form-field class="select" *ngIf="this.firstFormGroup.controls['typeOfFuel'].value">
+                <mat-label>Engine capacity</mat-label>
+                <select matNativeControl formControlName="engineCapacity" required>
+                    <option value="capacity1">capacity1</option>
+                    <option value="capacity2">capacity2</option>
+                </select>
+            </mat-form-field>
+
+            <mat-form-field class="select" *ngIf="this.firstFormGroup.controls['engineCapacity'].value">
+                <mat-label>Year of production</mat-label>
+                <select matNativeControl formControlName="yearOfProduction" required>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                </select>
+            </mat-form-field>
+            <div>
+                <button mat-raised-button matStepperNext class="button">Next</button>
+            </div>
+        </form>
+    </mat-step>
+    <mat-step [stepControl]="secondFormGroup">
+        <form [formGroup]="secondFormGroup">
+            <ng-template matStepLabel>Mulfunction selection</ng-template>
+
+            <mat-form-field class="select">
+                <mat-label>Category</mat-label>
+                <select matNativeControl formControlName="category" required>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                </select>
+            </mat-form-field>
+
+            <mat-form-field class="select" *ngIf="this.secondFormGroup.controls['category'].value">
+                <mat-label>Mulfunction</mat-label>
+                <select matNativeControl formControlName="mulfunction" required>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                </select>
+            </mat-form-field>
+            <div>
+                <button mat-stroked-button matStepperPrevious class="button">Back</button>
+                <button mat-raised-button matStepperNext class="button">Next</button>
+            </div>
+        </form>
+    </mat-step>
+    <mat-step [stepControl]="thirdFormGroup">
+        <form [formGroup]=" thirdFormGroup">
+            <ng-template matStepLabel>Locality selection</ng-template>
+
+            <mat-form-field class="select">
+                <mat-label>Locality</mat-label>
+                <select matNativeControl formControlName="zipCode" required>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                </select>
+            </mat-form-field>
+
+            <mat-list role="list" *ngIf="this.thirdFormGroup.controls['zipCode'].value" class="list">
+                <mat-list-item role="listitem">Item 1
+                    <button mat-icon-button (click)="showInfo">
+                        <mat-icon>info</mat-icon>
+                    </button>
+                </mat-list-item>
+                <mat-list-item role="listitem">Item 2
+                    <button mat-icon-button (click)="showInfo">
+                        <mat-icon>info</mat-icon>
+                    </button>
+                </mat-list-item>
+                <mat-list-item role="listitem">Item 3
+                    <button mat-icon-button (click)="showInfo">
+                        <mat-icon>info</mat-icon>
+                    </button>
+                </mat-list-item>
+            </mat-list>
+
+            <div>
+                <button mat-stroked-button matStepperPrevious class="button">Back</button>
+            </div>
+        </form>
+    </mat-step>
+</mat-horizontal-stepper>

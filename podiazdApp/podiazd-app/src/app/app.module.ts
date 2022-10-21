@@ -6,13 +6,22 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { RegistrationComponent } from './registration/registration.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {MatFormFieldModule} from '@angular/material/form-field';
-import {MatSelectModule} from '@angular/material/select';
-import {MatIconModule} from '@angular/material/icon';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatSelectModule } from '@angular/material/select';
+import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import {MatCardModule} from '@angular/material/card';
-import {MatButtonModule} from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { MatButtonModule } from '@angular/material/button';
+import { MatListModule } from '@angular/material/list';
+import { HttpClientModule } from '@angular/common/http';
+import { HomePageComponent } from './home-page/home-page.component';
+import { CarSelectionComponent } from './car-selection/car-selection.component';
+import { MulfunctionSelectionComponent } from './mulfunction-selection/mulfunction-selection.component';
+import { CarRepairShopSelectionComponent } from './car-repair-shop-selection/car-repair-shop-selection.component';
+import { FindCarRepairShopComponent } from './find-car-repair-shop/find-car-repair-shop.component';
+import { RateCarRepairShopComponent } from './rate-car-repair-shop/rate-car-repair-shop.component';
+import { MatStepperModule } from '@angular/material/stepper';
 
 
 
@@ -21,9 +30,15 @@ import {MatButtonModule} from '@angular/material/button';
   declarations: [
     AppComponent,
     LoginComponent,
-    RegistrationComponent
+    RegistrationComponent,
+    HomePageComponent,
+    CarSelectionComponent,
+    MulfunctionSelectionComponent,
+    CarRepairShopSelectionComponent,
+    FindCarRepairShopComponent,
+    RateCarRepairShopComponent
   ],
-  
+
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -35,7 +50,11 @@ import {MatButtonModule} from '@angular/material/button';
     ReactiveFormsModule,
     MatInputModule,
     MatCardModule,
-    MatButtonModule
+    MatButtonModule,
+    HttpClientModule,
+    MatListModule,
+    MatStepperModule
+
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 
@@ -9,8 +10,17 @@ import { FormControl } from '@angular/forms';
 
 export class LoginComponent implements OnInit {
   email = new FormControl('')
+  password = new FormControl('')
   hide = true
-  constructor() { }
+
+  constructor(private http: HttpClient) { }
+
+  login() {
+    this.http.post('localhost:8080/api/v1/login', {
+      "email": this.email,
+      "password": this.password
+    })
+  }
 
   ngOnInit(): void {
   }
@@ -19,4 +29,3 @@ export class LoginComponent implements OnInit {
     return ""
   }
 }
-

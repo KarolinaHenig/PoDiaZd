@@ -15,6 +15,8 @@ class RegistrationRequest {
     final String email
     @Autowired
     final String password
+    @Autowired
+    final String repeatPassword
 
     String getName() {
         return name
@@ -30,5 +32,8 @@ class RegistrationRequest {
 
     String getPassword() {
         return password
+    }
+    String getRepeatPassword() {
+        return repeatPassword
     }
 }

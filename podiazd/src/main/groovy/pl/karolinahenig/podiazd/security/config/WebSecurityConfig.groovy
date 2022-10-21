@@ -30,6 +30,7 @@ class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .csrf().disable()
+                .cors().disable()
                 .authorizeRequests()
                 .antMatchers("/api/v*/registration/**")
                 .permitAll()
@@ -43,13 +44,14 @@ class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     @Bean
-   DaoAuthenticationProvider daoAuthenticationProvider() {
+    DaoAuthenticationProvider daoAuthenticationProvider() {
         DaoAuthenticationProvider provider =
                 new DaoAuthenticationProvider()
         provider.setPasswordEncoder(bCryptPasswordEncoder)
         provider.setUserDetailsService(appUserService)
         return provider
     }
+
     @Bean
     JavaMailSender javaMailSender() {
         return new JavaMailSenderImpl();

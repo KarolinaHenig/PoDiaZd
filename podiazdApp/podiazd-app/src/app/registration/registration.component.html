@@ -2,37 +2,40 @@
 <mat-card id="matcard">
     <form>
         <mat-card-title>Registration</mat-card-title>
-        <mat-form-field appearance="fill" id="field">
+        <mat-form-field appearance="fill" >
             <mat-label>Enter your email</mat-label>
             <input matInput placeholder="pat@example.com" [formControl]="email" email required>
-            <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
+            <mat-error *ngIf="email.invalid">{{getErrorMessageMail()}}</mat-error>
         </mat-form-field>
-        <mat-form-field appearance="fill" id="field">
+        <mat-form-field appearance="fill">
             <mat-label>Enter your name</mat-label>
             <input matInput placeholder="John" [formControl]="name" required>
-            <mat-error *ngIf="name.invalid">{{getErrorMessage()}}</mat-error>
+            <mat-error *ngIf="name.invalid">{{getErrorMessageName()}}</mat-error>
           </mat-form-field>
-          <mat-form-field appearance="fill" id="field">
-              <mat-label>Enter your urname</mat-label>
+          <mat-form-field appearance="fill">
+              <mat-label>Enter your surname</mat-label>
               <input matInput placeholder="Doe"  [formControl]="surname" required>
-            <mat-error *ngIf="surname.invalid">{{getErrorMessage()}}</mat-error>
+            <mat-error *ngIf="surname.invalid">{{getErrorMessageSurname()}}</mat-error>
             </mat-form-field>
-        <mat-form-field appearance="fill" id="field">
+        <mat-form-field appearance="fill">
             <mat-label>Enter your password</mat-label>
             <input matInput [type]="hidePassword ? 'password' : 'text'" [formControl]="password" required>
-            <mat-error *ngIf="password.invalid">{{getErrorMessage()}}</mat-error>
+            <mat-error *ngIf="password.hasError('minlength')">{{getErrorMessageMinLenght()}}</mat-error>
+            <mat-error *ngIf="password.hasError('required')">{{getErrorMessagePassword()}}</mat-error>
             <button mat-icon-button matSuffix (click)="hidePassword = !hidePassword" >
                 <mat-icon>{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
             </button>
         </mat-form-field>
-        <mat-form-field appearance="fill" id="field">
+        <mat-form-field appearance="fill">
             <mat-label>Confirm Password</mat-label>
-            <input matInput [type]="hideRepeatPassword ? 'password' : 'text'" [formControl]="password" required>
-            <mat-error *ngIf="repeatPassword.invalid">{{getErrorMessage()}}</mat-error>
+            <input matInput [type]="hideRepeatPassword ? 'password' : 'text'" [formControl]="repeatPassword" required>
+            <mat-error *ngIf="repeatPassword.hasError('minlength')">{{getErrorMessageMinLenght()}}</mat-error>
+            <mat-error *ngIf="repeatPassword.hasError('required')">{{getErrorMessagePassword()}}</mat-error>
+            <mat-error *ngIf="password.invalid && !repeatPassword.hasError('required') && !repeatPassword.hasError('minlength')">{{getErrorPasswordMismatch()}}</mat-error>
             <button mat-icon-button matSuffix (click)="hideRepeatPassword = !hideRepeatPassword">
                 <mat-icon>{{hideRepeatPassword ? 'visibility_off' : 'visibility'}}</mat-icon>
             </button>
         </mat-form-field>
-        <button mat-raised-button (click)="register()">Register</button>
+        <button mat-raised-button  class = "form-button" (click)="register()">Register</button>
     </form>
 </mat-card>

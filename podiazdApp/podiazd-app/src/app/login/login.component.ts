@@ -1,6 +1,9 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { AbstractControl, FormControl, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+
+//let token: String = ""
 
 @Component({
   selector: 'app-login',
@@ -8,24 +11,49 @@ import { FormControl } from '@angular/forms';
   styleUrls: ['./login.component.scss']
 })
 
+
 export class LoginComponent implements OnInit {
-  email = new FormControl('')
+  email = new FormControl('', Validators.required)
   password = new FormControl('')
   hide = true
-
-  constructor(private http: HttpClient) { }
+  token = null as string | null
+  status = ""
+  constructor(private http: HttpClient, private router: Router) { }
 
   login() {
-    this.http.post('localhost:8080/api/v1/login', {
-      "email": this.email,
-      "password": this.password
-    })
+    this.http.post('http://localhost:8080/api/v1/login', {
+
+      "email": this.email.value,
+      "password": this.password.value
+
+    }).subscribe((data: any) => {
+      console.log(data)
+      this.token = data.token as string
+      localStorage.setItem("token", this.token)
+      this.router.navigateByUrl('/home-page')
+    },
+      (error) => {
+        console.log(error)
+        this.status = error.status as string
+      }
+    )
   }
 
+  onEmailChange() {
+    if (this.status == '403') {
+      this.status = ''
+    }
+  }
   ngOnInit(): void {
   }
 
-  getErrorMessage() {
-    return ""
+  getErrorMessageMail() {
+    return "Please inform your email"
+  }
+  getErrorMessagePassword() {
+    return "Please inform your password"
+  }
+  getErrorMessageWrongEmail() {
+    return "Email address or password is wrong"
   }
 }

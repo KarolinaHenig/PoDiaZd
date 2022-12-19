@@ -1,21 +1,27 @@
-<mat-card id="matcard">
+<mat-card>
     <form>
         <mat-card-title>Login</mat-card-title>
         <mat-form-field appearance="fill" id="field">
             <mat-label>Enter your email</mat-label>
-            <input matInput placeholder="pat@example.com" [formControl]="email" email required>
-            <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
+            <input (ngModelChange)="onEmailChange()" matInput placeholder="john@example.com" [formControl]="email" email required>
+            <mat-error *ngIf="email.hasError('required')" >{{getErrorMessageMail()}}</mat-error>
         </mat-form-field>
         <mat-form-field appearance="fill" id="field">
             <mat-label>Enter your password</mat-label>
             <input matInput [type]="hide ? 'password' : 'text'" [formControl]="password" required>
-            <mat-error *ngIf="password.invalid">{{getErrorMessage()}}</mat-error>
+            <mat-error *ngIf="password.invalid">{{getErrorMessagePassword()}}</mat-error>
             <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
                 [attr.aria-pressed]="hide">
                 <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
             </button>
         </mat-form-field>
-        <button mat-raised-button (click)="login()">Login</button>
-        <button mat-button>Register</button>
+        <button  mat-raised-button class = "form-button" (click)="login()">Login</button>
+        <button mat-button class = "form-button" routerLink="/registration">Register</button>
+       
+            <div class="error-container" *ngIf="status == '403'">	
+            <mat-error >{{getErrorMessageWrongEmail()}}</mat-error>
+            </div>	
+       
     </form>
+    
 </mat-card>

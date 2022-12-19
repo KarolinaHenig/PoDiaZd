@@ -1,15 +1,18 @@
-#matcard{
-    height: 60%;
+mat-card {
     width: 30%;
-    margin-left:35%;
+    margin-left: 35%;
     margin-right: 35%;
     margin-top: 20px;
     position: absolute;
-    background-color: rgb(206, 204, 207);
-    }
-#field{
+}
+
+mat-form-field {
     display: block;
     flex-direction: column;
     align-items: flex-start;
     width: 100%;
+    margin-top: 1rem;
+}
+.form-button{
+    margin-top: 1rem;
 }

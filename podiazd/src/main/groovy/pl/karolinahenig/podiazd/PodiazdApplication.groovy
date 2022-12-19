@@ -1,13 +1,9 @@
 package pl.karolinahenig.podiazd
 
-import org.springframework.boot.CommandLineRunner
 import org.springframework.boot.SpringApplication
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.context.annotation.Bean
 import org.springframework.mail.javamail.JavaMailSenderImpl
-import org.springframework.web.servlet.config.annotation.CorsRegistry
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurer
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 
 @SpringBootApplication
 class PodiazdApplication {
@@ -17,7 +13,7 @@ class PodiazdApplication {
     }
 
     @Bean
-     JavaMailSenderImpl mailSender() {
+    JavaMailSenderImpl mailSender() {
         JavaMailSenderImpl javaMailSender = new JavaMailSenderImpl();
 
         javaMailSender.setProtocol("smtp");

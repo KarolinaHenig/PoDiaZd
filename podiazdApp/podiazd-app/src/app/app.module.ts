@@ -16,12 +16,12 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatListModule } from '@angular/material/list';
 import { HttpClientModule } from '@angular/common/http';
 import { HomePageComponent } from './home-page/home-page.component';
-import { CarSelectionComponent } from './car-selection/car-selection.component';
 import { MulfunctionSelectionComponent } from './mulfunction-selection/mulfunction-selection.component';
 import { CarRepairShopSelectionComponent } from './car-repair-shop-selection/car-repair-shop-selection.component';
 import { FindCarRepairShopComponent } from './find-car-repair-shop/find-car-repair-shop.component';
 import { RateCarRepairShopComponent } from './rate-car-repair-shop/rate-car-repair-shop.component';
 import { MatStepperModule } from '@angular/material/stepper';
+import { AuthGuard } from './auth-guard';
 
 
 
@@ -32,7 +32,6 @@ import { MatStepperModule } from '@angular/material/stepper';
     LoginComponent,
     RegistrationComponent,
     HomePageComponent,
-    CarSelectionComponent,
     MulfunctionSelectionComponent,
     CarRepairShopSelectionComponent,
     FindCarRepairShopComponent,
@@ -56,7 +55,7 @@ import { MatStepperModule } from '@angular/material/stepper';
     MatStepperModule
 
   ],
-  providers: [],
+  providers: [AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

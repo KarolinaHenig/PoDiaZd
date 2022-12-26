@@ -19,7 +19,7 @@
             </mat-form-field>
         <mat-form-field appearance="fill">
             <mat-label>Enter your password</mat-label>
-            <input matInput [type]="hidePassword ? 'password' : 'text'" [formControl]="password" required>
+            <input matInput [type]="hidePassword ? 'password' : 'text'" [formControl]="password" (ngModelChange)="onPassword()" required>
             <mat-error *ngIf="password.hasError('minlength')">{{getErrorMessageMinLenght()}}</mat-error>
             <mat-error *ngIf="password.hasError('required')">{{getErrorMessagePassword()}}</mat-error>
             <button mat-icon-button matSuffix (click)="hidePassword = !hidePassword" >
@@ -31,7 +31,7 @@
             <input matInput [type]="hideRepeatPassword ? 'password' : 'text'" [formControl]="repeatPassword" required>
             <mat-error *ngIf="repeatPassword.hasError('minlength')">{{getErrorMessageMinLenght()}}</mat-error>
             <mat-error *ngIf="repeatPassword.hasError('required')">{{getErrorMessagePassword()}}</mat-error>
-            <mat-error *ngIf="password.invalid && !repeatPassword.hasError('required') && !repeatPassword.hasError('minlength')">{{getErrorPasswordMismatch()}}</mat-error>
+            <mat-error *ngIf="repeatPassword.hasError('matchError') && !repeatPassword.hasError('required') && !repeatPassword.hasError('minlength')">{{getErrorPasswordMismatch()}}</mat-error>
             <button mat-icon-button matSuffix (click)="hideRepeatPassword = !hideRepeatPassword">
                 <mat-icon>{{hideRepeatPassword ? 'visibility_off' : 'visibility'}}</mat-icon>
             </button>

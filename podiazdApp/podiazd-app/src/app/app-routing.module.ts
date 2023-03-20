@@ -5,7 +5,6 @@ import { CarRepairShopSelectionComponent } from './car-repair-shop-selection/car
 import { FindCarRepairShopComponent } from './find-car-repair-shop/find-car-repair-shop.component';
 import { HomePageComponent } from './home-page/home-page.component';
 import { LoginComponent } from './login/login.component';
-import { MulfunctionSelectionComponent } from './mulfunction-selection/mulfunction-selection.component';
 import { RateCarRepairShopComponent } from './rate-car-repair-shop/rate-car-repair-shop.component';
 import { RegistrationComponent } from './registration/registration.component';
 
@@ -14,7 +13,6 @@ const routes: Routes = [
   { path: 'registration', component: RegistrationComponent },
   { path: 'home-page', component: HomePageComponent, canActivate: [AuthGuard] },
   { path: 'car-repair-shop-selection', component: CarRepairShopSelectionComponent, canActivate: [AuthGuard] },
-  { path: 'mulfunction-selection', component: MulfunctionSelectionComponent, canActivate: [AuthGuard] },
   { path: 'find-car-repair-shop', component: FindCarRepairShopComponent, canActivate: [AuthGuard] },
   { path: 'rate-car-repair-shop', component: RateCarRepairShopComponent, canActivate: [AuthGuard] },
   { path: '**', redirectTo: 'login' }

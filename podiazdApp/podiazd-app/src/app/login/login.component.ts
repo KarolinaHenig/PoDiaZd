@@ -3,7 +3,6 @@ import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormControl, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
-//let token: String = ""
 
 @Component({
   selector: 'app-login',

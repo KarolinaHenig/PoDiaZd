@@ -1,62 +1,85 @@
 <mat-horizontal-stepper [linear]="isLinear" #stepper>
     <mat-step [stepControl]="firstFormGroup">
         <form [formGroup]="firstFormGroup">
-            <ng-template matStepLabel>Car selection</ng-template>
+           <ng-template matStepLabel>Car selection</ng-template> 
+
+
 
             <mat-form-field class="select">
                 <mat-label>Brand</mat-label>
-                <select matNativeControl formControlName="brand" required>
-                    <option value="brand1">Brand1</option>
-                    <option value="brand2">Brand2</option>
-                </select>
+                <input matInput type="text" placeholder="Brand" formControlName="brand" [matAutocomplete]="auto"
+                    class="example-input">
+                <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayBrand">
+                    <mat-option *ngFor="let brand of brands" [value]="brand">
+                        {{brand.brandName}}
+                    </mat-option>
+                </mat-autocomplete>
             </mat-form-field>
 
             <mat-form-field class="select" *ngIf="this.firstFormGroup.controls['brand'].value">
                 <mat-label>Model</mat-label>
-                <select matNativeControl formControlName="model" required>
-                    <option value="model1">Model1</option>
-                    <option value="model2">Model2</option>
-                </select>
+                <input matInput type="text" placeholder="Model" formControlName="model" [matAutocomplete]="auto2"
+                    class="example-input">
+                <mat-autocomplete #auto2="matAutocomplete" [displayWith]="displayModel">
+                    <mat-option *ngFor="let model of models" [value]="model">
+                        {{model.modelName}}
+                    </mat-option>
+                </mat-autocomplete>
             </mat-form-field>
 
             <mat-form-field class="select" *ngIf="this.firstFormGroup.controls['model'].value">
                 <mat-label>Generation</mat-label>
-                <select matNativeControl formControlName="generation" required>
-                    <option value="generation1">generation1</option>
-                    <option value="generation2">generation2</option>
-                </select>
+                <input matInput type="text" placeholder="Generation" formControlName="generation"
+                    [matAutocomplete]="auto3" class="example-input">
+                <mat-autocomplete #auto3="matAutocomplete" [displayWith]="displayGeneration">
+                    <mat-option *ngFor="let generation of generations" [value]="generation">
+                        {{generation.generationName}}
+                    </mat-option>
+                </mat-autocomplete>
             </mat-form-field>
 
             <mat-form-field class="select" *ngIf="this.firstFormGroup.controls['generation'].value">
                 <mat-label>Body type</mat-label>
-                <select matNativeControl formControlName="bodyType" required>
-                    <option value="body1">Body1</option>
-                    <option value="body2">Body2</option>
-                </select>
+                <input matInput type="text" placeholder="Body type" formControlName="bodyType" [matAutocomplete]="auto4"
+                    class="example-input">
+                <mat-autocomplete #auto4="matAutocomplete" [displayWith]="displayBodyType">
+                    <mat-option *ngFor="let bodyType of bodyTypes" [value]="bodyType">
+                        {{bodyType.bodyTypeName}}
+                    </mat-option>
+                </mat-autocomplete>
             </mat-form-field>
 
             <mat-form-field class="select" *ngIf="this.firstFormGroup.controls['bodyType'].value">
                 <mat-label>Type of fuel</mat-label>
-                <select matNativeControl formControlName="typeOfFuel" required>
-                    <option value="fuel1">fuel1</option>
-                    <option value="fuel2">fuel2</option>
-                </select>
+                <input matInput type="text" placeholder="Type of fuel" formControlName="fuelType"
+                    [matAutocomplete]="auto5" class="example-input">
+                <mat-autocomplete #auto5="matAutocomplete" [displayWith]="displayFuelType">
+                    <mat-option *ngFor="let fuelType of fuelTypes" [value]="fuelType">
+                        {{fuelType.fuelTypeName}}
+                    </mat-option>
+                </mat-autocomplete>
             </mat-form-field>
 
-            <mat-form-field class="select" *ngIf="this.firstFormGroup.controls['typeOfFuel'].value">
+            <mat-form-field class="select" *ngIf="this.firstFormGroup.controls['fuelType'].value">
                 <mat-label>Engine capacity</mat-label>
-                <select matNativeControl formControlName="engineCapacity" required>
-                    <option value="capacity1">capacity1</option>
-                    <option value="capacity2">capacity2</option>
-                </select>
+                <input matInput type="text" placeholder="Engine capacity" formControlName="engineCapacity"
+                    [matAutocomplete]="auto6" class="example-input">
+                <mat-autocomplete #auto6="matAutocomplete" [displayWith]="displayEngineCapacity">
+                    <mat-option *ngFor="let engineCapacity of engineCapacities" [value]="engineCapacity">
+                        {{engineCapacity.engineCapacityName}}
+                    </mat-option>
+                </mat-autocomplete>
             </mat-form-field>
 
             <mat-form-field class="select" *ngIf="this.firstFormGroup.controls['engineCapacity'].value">
                 <mat-label>Year of production</mat-label>
-                <select matNativeControl formControlName="yearOfProduction" required>
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                </select>
+                <input matInput type="text" placeholder="Year of production" formControlName="productionYear"
+                    [matAutocomplete]="auto7" class="example-input">
+                <mat-autocomplete #auto7="matAutocomplete" [displayWith]="displayProductionYear">
+                    <mat-option *ngFor="let productionYear of productionYears" [value]="productionYear">
+                        {{productionYear.productionYearName}}
+                    </mat-option>
+                </mat-autocomplete>
             </mat-form-field>
             <div>
                 <button mat-raised-button matStepperNext class="button">Next</button>
@@ -65,24 +88,25 @@
     </mat-step>
     <mat-step [stepControl]="secondFormGroup">
         <form [formGroup]="secondFormGroup">
-            <ng-template matStepLabel>Mulfunction selection</ng-template>
+            <ng-template matStepLabel>Malfunction selection</ng-template>
 
             <mat-form-field class="select">
                 <mat-label>Category</mat-label>
-                <select matNativeControl formControlName="category" required>
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                </select>
+                <input matInput type="text" placeholder="Category" formControlName="category" [matAutocomplete]="auto8"
+                    class="example-input">
+                <mat-autocomplete #auto8="matAutocomplete" [displayWith]="displayCategory">
+                    <mat-option *ngFor="let category of categories" [value]="category">
+                        {{category.categoryName}}
+                    </mat-option>
+                </mat-autocomplete>
             </mat-form-field>
 
             <mat-form-field class="select" *ngIf="this.secondFormGroup.controls['category'].value">
-                <mat-label>Mulfunction</mat-label>
-                <select matNativeControl formControlName="mulfunction" required>
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                </select>
+                <mat-label>Description on malfunction</mat-label>
+                <input matInput type="text" placeholder="Description on malfunction" formControlName="malfunctionDescription" [matAutocomplete]="auto9"
+                    class="example-input">
+                <mat-autocomplete #auto9="matAutocomplete" [displayWith]="displayMalfunctionDescription">
+                </mat-autocomplete> 
             </mat-form-field>
             <div>
                 <button mat-stroked-button matStepperPrevious class="button">Back</button>
@@ -95,15 +119,28 @@
             <ng-template matStepLabel>Locality selection</ng-template>
 
             <mat-form-field class="select">
-                <mat-label>Locality</mat-label>
-                <select matNativeControl formControlName="zipCode" required>
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                </select>
+                <mat-label>Voivodeship</mat-label>
+                <input matInput type="text" placeholder="Voivodeship" formControlName="voivodeship" [matAutocomplete]="auto10"
+                class="example-input">
+                <mat-autocomplete #auto10="matAutocomplete" [displayWith]="displayVoivodeship">
+                    <mat-option *ngFor="let voivodeship of voivodeships" [value]="voivodeship">
+                        {{voivodeship.voivodeshipName}}
+                    </mat-option>
+            </mat-autocomplete>
             </mat-form-field>
 
-            <mat-list role="list" *ngIf="this.thirdFormGroup.controls['zipCode'].value" class="list">
+            <mat-form-field class="select" *ngIf="this.thirdFormGroup.controls['voivodeship'].value">
+                <mat-label>City</mat-label>
+                <input matInput type="text" placeholder="City" formControlName="city" [matAutocomplete]="auto11"
+                class="example-input">
+                <mat-autocomplete #auto11="matAutocomplete" [displayWith]="displayCity">
+                    <mat-option *ngFor="let city of cities" [value]="city">
+                        {{city.cityName}}
+                    </mat-option>
+            </mat-autocomplete>
+            </mat-form-field>
+
+            <mat-list role="list" *ngIf="this.thirdFormGroup.controls['city'].value" class="list">
                 <mat-list-item role="listitem">Item 1
                     <button mat-icon-button (click)="showInfo">
                         <mat-icon>info</mat-icon>

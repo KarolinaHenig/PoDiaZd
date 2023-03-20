@@ -26,7 +26,6 @@ class AppUser implements UserDetails {
     private String surname
     private String email
     private String password
-    private String repeatPassword
     @Enumerated(EnumType.STRING)
     private AppUserRole appUserRole
     private Boolean locked = false
@@ -36,14 +35,12 @@ class AppUser implements UserDetails {
             String surname,
             String email,
             String password,
-            String repeatPassword,
             AppUserRole appUserRole) {
 
         this.name = name
         this.surname = surname
         this.email = email
         this.password = password
-        this.repeatPassword = repeatPassword
         this.appUserRole = appUserRole
         this.locked = locked
         this.enabled = enabled
@@ -65,14 +62,6 @@ class AppUser implements UserDetails {
 
     void setPassword(String password) {
         this.password = password
-    }
-
-    String getRepeatPassword() {
-        return repeatPassword
-    }
-
-    void setRepeatPassword(String repeatPassword) {
-        this.repeatPassword = repeatPassword
     }
 
     Long getId() {

@@ -21,7 +21,8 @@ import { FindCarRepairShopComponent } from './find-car-repair-shop/find-car-repa
 import { RateCarRepairShopComponent } from './rate-car-repair-shop/rate-car-repair-shop.component';
 import { MatStepperModule } from '@angular/material/stepper';
 import { AuthGuard } from './auth-guard';
-import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { AddCarRepairShopComponent } from './add-car-repair-shop/add-car-repair-shop.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import {MatAutocompleteModule} from '@angular/material/autocomplete';
     HomePageComponent,
     CarRepairShopSelectionComponent,
     FindCarRepairShopComponent,
-    RateCarRepairShopComponent
+    RateCarRepairShopComponent,
+    AddCarRepairShopComponent
   ],
 
   imports: [

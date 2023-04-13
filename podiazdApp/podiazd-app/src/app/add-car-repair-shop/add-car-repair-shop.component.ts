@@ -1,40 +1,41 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { token } from '../auth-guard';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
-  selector: 'app-rate-car-repair-shop',
-  templateUrl: './rate-car-repair-shop.component.html',
-  styleUrls: ['./rate-car-repair-shop.component.scss']
+  selector: 'app-add-car-repair-shop',
+  templateUrl: './add-car-repair-shop.component.html',
+  styleUrls: ['./add-car-repair-shop.component.scss']
 })
-export class RateCarRepairShopComponent implements OnInit {
-  isLinear = true;
-  showInfo = true;
+export class AddCarRepairShopComponent implements OnInit {
   firstFormGroup!: FormGroup;
-  secondFormGroup!: FormGroup;
-  thirdFormGroup!: FormGroup;
   voivodeships: Array<any> = [];
   counties: Array<any> = [];
   cities: Array<any> = [];
+  disableTextbox = false;
+
+  toggleDisable() {
+    this.disableTextbox = true;
+  }
 
   constructor(private http: HttpClient, private _formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
     this.firstFormGroup = this._formBuilder.group({
       voivodeship: ['', Validators.required],
-      county: ['', Validators.required],
-      city: ['', Validators.required],
+      county: [{ value: '', disabled: true }, Validators.required],
+      city: [{ value: '', disabled: true }, Validators.required],
     });
 
     this.http.post('http://localhost:8080/api/v1/rate-car-repair-shop/voivodeships', {},
-    {
-      headers: {
-        "Authorization": "Bearer " + token
-      }
-    }).subscribe((voivodeshipValue: any) => {
-      this.voivodeships = voivodeshipValue.voivodeships as Array<any>
-    });
+      {
+        headers: {
+          "Authorization": "Bearer " + token
+        }
+      }).subscribe((voivodeshipValue: any) => {
+        this.voivodeships = voivodeshipValue.voivodeships as Array<any>
+      });
 
     this.firstFormGroup.controls['voivodeship'].valueChanges.subscribe(voivodeshipValue => {
       this.http.post('http://localhost:8080/api/v1/rate-car-repair-shop/counties', {
@@ -46,7 +47,14 @@ export class RateCarRepairShopComponent implements OnInit {
       }).subscribe((countyValue: any) => {
         this.counties = countyValue.counties as Array<any>
         this.firstFormGroup.controls['county'].setValue('')
+
       });
+      if (voivodeshipValue) {
+        this.firstFormGroup.controls['county'].enable()
+      } else {
+        this.firstFormGroup.controls['county'].disable()
+        this.firstFormGroup.controls['county'].setValue('')
+      }
     });
 
     this.firstFormGroup.controls['county'].valueChanges.subscribe(countyValue => {
@@ -60,13 +68,19 @@ export class RateCarRepairShopComponent implements OnInit {
         this.cities = cityValue.cities as Array<any>
         this.firstFormGroup.controls['city'].setValue('')
       });
+      if (countyValue) {
+        this.firstFormGroup.controls['city'].enable()
+      } else {
+        this.firstFormGroup.controls['city'].disable()
+        this.firstFormGroup.controls['city'].setValue('')
+      }
     });
   }
 
   displayVoivodeship(voivodeships: any) {
     return voivodeships.voivodeshipName
   }
-  
+
   displayCounty(counties: any) {
     return counties.countyName
   }

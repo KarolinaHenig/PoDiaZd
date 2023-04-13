@@ -23,6 +23,7 @@ export class FindCarRepairShopComponent implements OnInit {
   productionYears: Array<any> = [];
   categories: Array<any> = [];
   voivodeships: Array<any> = [];
+  counties: Array<any> = [];
   cities: Array<any> = [];
 
   constructor(private http: HttpClient, private _formBuilder: FormBuilder) { }
@@ -43,6 +44,7 @@ export class FindCarRepairShopComponent implements OnInit {
     });
     this.thirdFormGroup = this._formBuilder.group({
       voivodeship: ['', Validators.required],
+      county: ['', Validators.required],
       city: ['', Validators.required],
     });
 
@@ -142,7 +144,8 @@ export class FindCarRepairShopComponent implements OnInit {
         this.categories = categoryValue.categories as Array<any>
       });
 
-      this.http.post('http://localhost:8080/api/v1/find-car-repair-shop/voivodeships', {},
+  
+      this.http.post('http://localhost:8080/api/v1/rate-car-repair-shop/voivodeships', {},
       {
         headers: {
           "Authorization": "Bearer " + token
@@ -150,11 +153,23 @@ export class FindCarRepairShopComponent implements OnInit {
       }).subscribe((voivodeshipValue: any) => {
         this.voivodeships = voivodeshipValue.voivodeships as Array<any>
       });
-
-
+  
       this.thirdFormGroup.controls['voivodeship'].valueChanges.subscribe(voivodeshipValue => {
-        this.http.post('http://localhost:8080/api/v1/find-car-repair-shop/cities', {
+        this.http.post('http://localhost:8080/api/v1/rate-car-repair-shop/counties', {
           "voivodeshipValue": voivodeshipValue.id
+        }, {
+          headers: {
+            "Authorization": "Bearer " + token
+          }
+        }).subscribe((countyValue: any) => {
+          this.counties = countyValue.counties as Array<any>
+          this.thirdFormGroup.controls['county'].setValue('')
+        });
+      });
+  
+      this.thirdFormGroup.controls['county'].valueChanges.subscribe(countyValue => {
+        this.http.post('http://localhost:8080/api/v1/rate-car-repair-shop/cities', {
+          "countyValue": countyValue.id
         }, {
           headers: {
             "Authorization": "Bearer " + token
@@ -195,6 +210,9 @@ export class FindCarRepairShopComponent implements OnInit {
   }
   displayVoivodeship(voivodeships: any) {
     return voivodeships.voivodeshipName
+  }
+  displayCounty(counties: any) {
+    return counties.countyName
   }
   displayCity(cities: any) {
     return cities.cityName

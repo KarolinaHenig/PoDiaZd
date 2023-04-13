@@ -5,5 +5,5 @@ import org.springframework.stereotype.Repository
 
 @Repository
 interface CityRepository extends CrudRepository<City, Long> {
-    List<City> findAllByCountyIn(List<County> counties)
+    List<City> findAllByCountyId(long countyId)
 }

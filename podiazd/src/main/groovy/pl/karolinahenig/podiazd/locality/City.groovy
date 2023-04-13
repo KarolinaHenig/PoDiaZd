@@ -10,7 +10,7 @@ class City {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id
-    @Column(unique = true)
+    @Column
     private String cityName
 
     @ManyToOne

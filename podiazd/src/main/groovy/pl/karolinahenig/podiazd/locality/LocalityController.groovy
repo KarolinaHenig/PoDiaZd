@@ -37,11 +37,18 @@ class LocalityController {
         return ["voivodeships": voivodeships]
     }
 
-    @PostMapping(path = "rate-car-repair-shop/cities")
-    Map selectCities(@RequestBody Map<String, Object> params) {
+    @PostMapping(path = "rate-car-repair-shop/counties")
+    Map selectCounties(@RequestBody Map<String, Object> params) {
         String voivodeshipValue = params.voivodeshipValue
         List<County> counties = countyRepository.findAllByVoivodeshipId(voivodeshipValue as long)
-        List<City> cities = cityRepository.findAllByCountyIn(counties)
+
+        return ["counties": counties]
+    }
+
+    @PostMapping(path = "rate-car-repair-shop/cities")
+    Map selectCities(@RequestBody Map<String, Object> params) {
+        String countyValue = params.countyValue
+        List<City> cities = cityRepository.findAllByCountyId(countyValue as long)
 
         return ["cities": cities]
     }

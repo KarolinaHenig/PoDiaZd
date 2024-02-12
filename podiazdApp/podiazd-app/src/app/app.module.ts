@@ -23,6 +23,9 @@ import { MatStepperModule } from '@angular/material/stepper';
 import { AuthGuard } from './auth-guard';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { AddCarRepairShopComponent } from './add-car-repair-shop/add-car-repair-shop.component';
+import { MatDialogModule} from '@angular/material/dialog';
+import {MatSliderModule} from '@angular/material/slider';
+import { StarRatingComponent } from './star-rating/star-rating.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +36,8 @@ import { AddCarRepairShopComponent } from './add-car-repair-shop/add-car-repair-
     CarRepairShopSelectionComponent,
     FindCarRepairShopComponent,
     RateCarRepairShopComponent,
-    AddCarRepairShopComponent
+    AddCarRepairShopComponent,
+    StarRatingComponent
   ],
 
   imports: [
@@ -52,7 +56,8 @@ import { AddCarRepairShopComponent } from './add-car-repair-shop/add-car-repair-
     MatListModule,
     MatStepperModule,
     MatAutocompleteModule,
-    
+    MatDialogModule,
+    MatSliderModule
   ],
   providers: [AuthGuard],
   bootstrap: [AppComponent]

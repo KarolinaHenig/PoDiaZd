@@ -7,6 +7,7 @@ import javax.persistence.Entity
 import javax.persistence.GeneratedValue
 import javax.persistence.GenerationType
 import javax.persistence.Id
+import javax.persistence.JoinColumn
 import javax.persistence.ManyToOne
 
 @Entity
@@ -15,23 +16,26 @@ class CarRepairShop {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id
 
-    @Column(unique = true)
+    @Column
     private String carRepairShopName
 
     @ManyToOne
-    @JsonIgnore
     private Voivodeship voivodeship
 
     @ManyToOne
-    @JsonIgnore
     private County county
 
     @ManyToOne
-    @JsonIgnore
     private City city
 
     @Column
     private String street
+
+    @Column
+    private String houseNumber
+
+    @Column
+    private String phoneNumber
 
     Long getId() {
         return id
@@ -80,4 +84,31 @@ class CarRepairShop {
     void setStreet(String street) {
         this.street = street
     }
+
+    String getHouseNumber() {
+        return houseNumber
+    }
+
+    void setHouseNumber(String houseNumber) {
+        this.houseNumber = houseNumber
+    }
+
+    String getPhoneNumber() {
+        return phoneNumber
+    }
+
+    void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber
+    }
+
+    String getEmail() {
+        return email
+    }
+
+    void setEmail(String email) {
+        this.email = email
+    }
+    @Column
+    private String email
+
 }

@@ -50,37 +50,16 @@
             </mat-form-field>
 
             <mat-form-field class="select" *ngIf="this.firstFormGroup.controls['bodyType'].value">
-                <mat-label>Type of fuel</mat-label>
-                <input matInput type="text" placeholder="Type of fuel" formControlName="fuelType"
+                <mat-label>Modification</mat-label>
+                <input matInput type="text" placeholder="Modification" formControlName="modification"
                     [matAutocomplete]="auto5" class="example-input">
-                <mat-autocomplete #auto5="matAutocomplete" [displayWith]="displayFuelType">
-                    <mat-option *ngFor="let fuelType of fuelTypes" [value]="fuelType">
-                        {{fuelType.fuelTypeName}}
+                <mat-autocomplete #auto5="matAutocomplete" [displayWith]="displayModification">
+                    <mat-option *ngFor="let modification of modifications" [value]="modification">
+                        {{modification.modificationName}}
                     </mat-option>
                 </mat-autocomplete>
             </mat-form-field>
 
-            <mat-form-field class="select" *ngIf="this.firstFormGroup.controls['fuelType'].value">
-                <mat-label>Engine capacity</mat-label>
-                <input matInput type="text" placeholder="Engine capacity" formControlName="engineCapacity"
-                    [matAutocomplete]="auto6" class="example-input">
-                <mat-autocomplete #auto6="matAutocomplete" [displayWith]="displayEngineCapacity">
-                    <mat-option *ngFor="let engineCapacity of engineCapacities" [value]="engineCapacity">
-                        {{engineCapacity.engineCapacityName}}
-                    </mat-option>
-                </mat-autocomplete>
-            </mat-form-field>
-
-            <mat-form-field class="select" *ngIf="this.firstFormGroup.controls['engineCapacity'].value">
-                <mat-label>Year of production</mat-label>
-                <input matInput type="text" placeholder="Year of production" formControlName="productionYear"
-                    [matAutocomplete]="auto7" class="example-input">
-                <mat-autocomplete #auto7="matAutocomplete" [displayWith]="displayProductionYear">
-                    <mat-option *ngFor="let productionYear of productionYears" [value]="productionYear">
-                        {{productionYear.productionYearName}}
-                    </mat-option>
-                </mat-autocomplete>
-            </mat-form-field>
             <div>
                 <button mat-raised-button matStepperNext class="button">Next</button>
             </div>

@@ -4,6 +4,6 @@ import org.springframework.data.repository.CrudRepository
 import org.springframework.stereotype.Repository
 
 @Repository
-interface EngineCapacityRepository extends CrudRepository<EngineCapacity, Long> {
-    List<EngineCapacity> findAllByFuelTypeId(long fuelTypeId)
+interface ModificationRepository extends CrudRepository<Modification, Long> {
+    List<Modification> findAllByGenerationId(long generationId)
 }

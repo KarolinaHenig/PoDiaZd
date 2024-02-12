@@ -6,7 +6,8 @@ import javax.persistence.Entity
 import javax.persistence.GeneratedValue
 import javax.persistence.GenerationType
 import javax.persistence.Id
-import javax.persistence.ManyToOne
+import javax.persistence.JoinTable
+import javax.persistence.ManyToMany
 
 @Entity
 class BodyType {
@@ -15,9 +16,10 @@ class BodyType {
     private Long id
     private  String bodyTypeName
 
-    @ManyToOne
     @JsonIgnore
-    private Generation generation
+    @ManyToMany@JoinTable(name="body_generation")
+    private Set<Generation> generations
+
 
     Long getId() {
         return id
@@ -35,11 +37,11 @@ class BodyType {
         this.bodyTypeName = bodyTypeName
     }
 
-    Generation getGeneration() {
-        return generation
+    Set<Generation> getGenerations() {
+        return generations
     }
 
-    void setGeneration(Generation generation) {
-        this.generation = generation
+    void setGenerations(Set<Generation> generations) {
+        this.generations = generations
     }
 }

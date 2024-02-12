@@ -18,9 +18,7 @@ export class FindCarRepairShopComponent implements OnInit {
   models: Array<any> = [];
   generations: Array<any> = [];
   bodyTypes: Array<any> = [];
-  fuelTypes: Array<any> = [];
-  engineCapacities: Array<any> = [];
-  productionYears: Array<any> = [];
+  modifications: Array<any> = [];
   categories: Array<any> = [];
   voivodeships: Array<any> = [];
   counties: Array<any> = [];
@@ -34,9 +32,7 @@ export class FindCarRepairShopComponent implements OnInit {
       model: ['', Validators.required],
       generation: ['', Validators.required],
       bodyType: ['', Validators.required],
-      fuelType: ['', Validators.required],
-      engineCapacity: ['', Validators.required],
-      productionYear: ['', Validators.required],
+      modification: ['', Validators.required]
     });
     this.secondFormGroup = this._formBuilder.group({
       category: ['', Validators.required],
@@ -96,42 +92,16 @@ export class FindCarRepairShopComponent implements OnInit {
       });
     });
 
-    this.firstFormGroup.controls['bodyType'].valueChanges.subscribe(bodyTypeValue => {
-      this.http.post('http://localhost:8080/api/v1/find-car-repair-shop/fuelTypes', {
-        "bodyTypeValue": bodyTypeValue.id
+    this.firstFormGroup.controls['generation'].valueChanges.subscribe(generationValue => {
+      this.http.post('http://localhost:8080/api/v1/find-car-repair-shop/modifications', {
+        "generationValue": generationValue.id
       }, {
         headers: {
           "Authorization": "Bearer " + token
         }
-      }).subscribe((fuelTypeValue: any) => {
-        this.fuelTypes = fuelTypeValue.fuelTypes as Array<any>
-        this.firstFormGroup.controls['fuelType'].setValue('')
-      });
-    });
-
-    this.firstFormGroup.controls['fuelType'].valueChanges.subscribe(fuelTypeValue => {
-      this.http.post('http://localhost:8080/api/v1/find-car-repair-shop/engineCapacities', {
-        "fuelTypeValue": fuelTypeValue.id
-      }, {
-        headers: {
-          "Authorization": "Bearer " + token
-        }
-      }).subscribe((engineCapacityValue: any) => {
-        this.engineCapacities = engineCapacityValue.engineCapacities as Array<any>
-        this.firstFormGroup.controls['engineCapacity'].setValue('')
-      });
-    });
-
-    this.firstFormGroup.controls['engineCapacity'].valueChanges.subscribe(engineCapacityValue => {
-      this.http.post('http://localhost:8080/api/v1/find-car-repair-shop/productionYears', {
-        "engineCapacityValue": engineCapacityValue.id
-      }, {
-        headers: {
-          "Authorization": "Bearer " + token
-        }
-      }).subscribe((productionYearValue: any) => {
-        this.productionYears = productionYearValue.productionYears as Array<any>
-        this.firstFormGroup.controls['productionYear'].setValue('')
+      }).subscribe((modificationValue: any) => {
+        this.modifications = modificationValue.modifications as Array<any>
+        this.firstFormGroup.controls['modification'].setValue('')
       });
     });
 
@@ -193,14 +163,8 @@ export class FindCarRepairShopComponent implements OnInit {
   displayBodyType(bodyTypes: any) {
     return bodyTypes.bodyTypeName
   }
-  displayFuelType(fuelTypes: any) {
-    return fuelTypes.fuelTypeName
-  }
-  displayEngineCapacity(engineCapacities: any) {
-    return engineCapacities.engineCapacityName
-  }
-  displayProductionYear(productionYears: any) {
-    return productionYears.productionYearName
+  displayModification(modifications: any) {
+    return modifications.modificationName
   }
   displayCategory(categories: any) {
     return categories.categoryName

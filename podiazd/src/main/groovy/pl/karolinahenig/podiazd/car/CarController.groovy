@@ -18,11 +18,7 @@ class CarController {
     @Autowired
     private final BodyTypeRepository bodyTypeRepository
     @Autowired
-    private final FuelTypeRepository fuelTypeRepository
-    @Autowired
-    private final EngineCapacityRepository engineCapacityRepository
-    @Autowired
-    private final ProductionYearRepository productionYearRepository
+    private final ModificationRepository modificationRepository
 
     @PostMapping(path = "brands")
     Map selectBrand() {
@@ -49,37 +45,20 @@ class CarController {
 
     @PostMapping(path = "bodyTypes")
     Map selectBodyTypes(@RequestBody Map<String, Object> params) {
-        String generationValue = params.generationValue
-        if (generationValue) {
-            List<BodyType> bodyTypes = bodyTypeRepository.findAllByGenerationId(generationValue as long)
+        Long generationValue = params.generationValue as Long
+        Optional<Generation> generation = generationRepository.findById(generationValue)
+        if (generation.isPresent()) {
+            List<BodyType> bodyTypes = bodyTypeRepository.findAllByGenerations(generation.get())
             return ["bodyTypes": bodyTypes]
         }
         return [:]
     }
-    @PostMapping(path = "fuelTypes")
-    Map selectFuelTypes(@RequestBody Map<String, Object> params) {
-        String bodyTypeValue = params.bodyTypeValue
-        if (bodyTypeValue) {
-            List<FuelType> fuelTypes = fuelTypeRepository.findAllByBodyTypeId(bodyTypeValue as long)
-            return ["fuelTypes": fuelTypes]
-        }
-        return [:]
-    }
-    @PostMapping(path = "engineCapacities")
-    Map selectEngineCapacities(@RequestBody Map<String, Object> params) {
-        String fuelTypeValue = params.fuelTypeValue
-        if (fuelTypeValue) {
-            List<EngineCapacity> engineCapacities = engineCapacityRepository.findAllByFuelTypeId(fuelTypeValue as long)
-            return ["engineCapacities": engineCapacities]
-        }
-        return [:]
-    }
-    @PostMapping(path = "productionYears")
-    Map selectProductionYears(@RequestBody Map<String, Object> params) {
-        String engineCapacityValue = params.engineCapacityValue
-        if (engineCapacityValue) {
-            List<ProductionYear> productionYears = productionYearRepository.findAllByEngineCapacityId(engineCapacityValue as long)
-            return ["productionYears": productionYears]
+    @PostMapping(path = "modifications")
+    Map selectModifications(@RequestBody Map<String, Object> params) {
+        String generationValue = params.generationValue
+        if (generationValue) {
+            List<Modification> modifications = modificationRepository.findAllByGenerationId(generationValue as long)
+            return ["modifications": modifications]
         }
         return [:]
     }

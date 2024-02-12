@@ -2,22 +2,22 @@ package pl.karolinahenig.podiazd.car
 
 import com.fasterxml.jackson.annotation.JsonIgnore
 
-import javax.persistence.Entity
-import javax.persistence.GeneratedValue
-import javax.persistence.GenerationType
-import javax.persistence.Id
-import javax.persistence.ManyToOne
+import javax.persistence.*
 
 @Entity
 class Generation {
     @Id
-    @GeneratedValue (strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id
-    private  String generationName
+    private String generationName
 
     @ManyToOne
     @JsonIgnore
     private Model model
+
+    @JsonIgnore
+    @ManyToMany(mappedBy = "generations")
+    private Set<BodyType> bodyTypes
 
     Long getId() {
         return id
@@ -41,5 +41,13 @@ class Generation {
 
     void setModel(Model model) {
         this.model = model
+    }
+
+    Set<BodyType> getBodyTypes() {
+        return bodyTypes
+    }
+
+    void setBodyTypes(Set<BodyType> bodyTypes) {
+        this.bodyTypes = bodyTypes
     }
 }

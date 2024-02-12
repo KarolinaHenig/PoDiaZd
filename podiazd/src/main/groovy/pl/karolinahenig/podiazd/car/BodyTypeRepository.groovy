@@ -5,5 +5,5 @@ import org.springframework.stereotype.Repository
 
 @Repository
 interface BodyTypeRepository extends CrudRepository<BodyType, Long> {
-    List<BodyType> findAllByGenerationId(long generationId)
+    List<BodyType> findAllByGenerations(Generation generation)
 }

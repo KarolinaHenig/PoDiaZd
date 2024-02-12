@@ -3,12 +3,16 @@ mat-card {
     margin-left: 35%;
     margin-right: 35%;
     margin-top: 20px;
-    position: absolute;
+    bottom: 20px;
+    position: relative;
 }
 mat-form-field {
     display: block;
     flex-direction: column;
     align-items: flex-start;
     width: 100%;
+    margin-top: 1rem;
+}
+.form-button{
     margin-top: 1rem;
 }

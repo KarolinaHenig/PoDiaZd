@@ -35,6 +35,7 @@ export class RegistrationComponent implements OnInit {
     }
 
   }
+  
   register() {
     this.http.post('http://localhost:8080/api/v1/registration', {
       "name": this.name.value,

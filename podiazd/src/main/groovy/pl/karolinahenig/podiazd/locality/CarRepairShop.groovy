@@ -1,14 +1,6 @@
 package pl.karolinahenig.podiazd.locality
 
-import com.fasterxml.jackson.annotation.JsonIgnore
-
-import javax.persistence.Column
-import javax.persistence.Entity
-import javax.persistence.GeneratedValue
-import javax.persistence.GenerationType
-import javax.persistence.Id
-import javax.persistence.JoinColumn
-import javax.persistence.ManyToOne
+import javax.persistence.*
 
 @Entity
 class CarRepairShop {
@@ -36,6 +28,18 @@ class CarRepairShop {
 
     @Column
     private String phoneNumber
+
+    @Column
+    private String email
+
+    @Column
+    private String averageRate
+
+    @Column
+    private String averageRateCar
+
+    @Column
+    private String averageRateMalfunction
 
     Long getId() {
         return id
@@ -108,7 +112,29 @@ class CarRepairShop {
     void setEmail(String email) {
         this.email = email
     }
-    @Column
-    private String email
+
+    String getAverageRate() {
+        return averageRate
+    }
+
+    void setAverageRate(String averageRate) {
+        this.averageRate = averageRate
+    }
+
+    String getAverageRateCar() {
+        return averageRateCar
+    }
+
+    void setAverageRateCar(String averageRateCar) {
+        this.averageRateCar = averageRateCar
+    }
+
+    String getAverageRateMalfunction() {
+        return averageRateMalfunction
+    }
+
+    void setAverageRateMalfunction(String averageRateMalfunction) {
+        this.averageRateMalfunction = averageRateMalfunction
+    }
 
 }

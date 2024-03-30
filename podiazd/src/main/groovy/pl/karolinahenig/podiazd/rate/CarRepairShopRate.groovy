@@ -1,21 +1,11 @@
 package pl.karolinahenig.podiazd.rate
 
 import pl.karolinahenig.podiazd.appuser.AppUser
-import pl.karolinahenig.podiazd.car.BodyType
-import pl.karolinahenig.podiazd.car.Brand
-import pl.karolinahenig.podiazd.car.Generation
-import pl.karolinahenig.podiazd.car.Model
-import pl.karolinahenig.podiazd.car.Modification
+import pl.karolinahenig.podiazd.car.*
 import pl.karolinahenig.podiazd.locality.CarRepairShop
-import pl.karolinahenig.podiazd.locality.Voivodeship
 import pl.karolinahenig.podiazd.malfunction.Malfunction
 
-import javax.persistence.Entity
-import javax.persistence.GeneratedValue
-import javax.persistence.GenerationType
-import javax.persistence.Id
-import javax.persistence.ManyToOne
-import javax.persistence.criteria.CriteriaBuilder.In
+import javax.persistence.*
 
 @Entity
 class CarRepairShopRate {

@@ -1,0 +1,19 @@
+<div>
+    <h1>{{data.carRepairShopName}}</h1>
+    <p *ngFor="let opinion of data.opinions">
+
+        <span style="font-size: 10pt; padding-top: 5pt;">Użytkownik:</span> <span
+            style="font-size: 10pt; font-weight: 600;  padding-top: 5pt;"> {{opinion?.appUser?.name}} </span>
+        <span style="font-size: 10pt; padding-top: 5pt;">Samochód:</span> <span
+            style="font-size: 10pt; font-weight: 600;  padding-top: 5pt;"> {{opinion?.brand?.brandName}}
+            {{opinion?.model?.modelName}} {{opinion?.generation?.generationName}} </span>
+        <span style="font-size: 10pt; padding-top: 5pt;">Awaria:</span> <span
+            style="font-size: 10pt; font-weight: 600;  padding-top: 5pt;"> {{opinion?.malfunction?.malfunctionName}}
+        </span>
+        <span style="font-size: 10pt; padding-top: 5pt;">Ocena:</span> <span
+            style="font-size: 10pt; font-weight: 600;  padding-top: 5pt;"> {{opinion?.rate}}/5</span>
+        <br> <span style="font-size: 10pt; padding-top: 5pt;">Opinia:</span>
+        <mat-card style="font-size: 11pt; padding: 5pt;"> {{opinion?.opinion}} </mat-card>
+
+    </p>
+</div>

@@ -26,6 +26,7 @@ import { AddCarRepairShopComponent } from './add-car-repair-shop/add-car-repair-
 import { MatDialogModule} from '@angular/material/dialog';
 import {MatSliderModule} from '@angular/material/slider';
 import { StarRatingComponent } from './star-rating/star-rating.component';
+import {MatTableModule} from '@angular/material/table';
 
 @NgModule({
   declarations: [
@@ -57,7 +58,8 @@ import { StarRatingComponent } from './star-rating/star-rating.component';
     MatStepperModule,
     MatAutocompleteModule,
     MatDialogModule,
-    MatSliderModule
+    MatSliderModule,
+    MatTableModule
   ],
   providers: [AuthGuard],
   bootstrap: [AppComponent]

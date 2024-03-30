@@ -13,3 +13,16 @@
     padding-left: 2%;
     padding-right: 2%;
 }
+
+.car-repair-shops-table {
+    width: 100%;
+}
+
+.malfunction-highlight {
+    color: red !important;
+}
+
+::ng-deep .mat-line{
+    word-wrap: break-word !important;
+    white-space: pre-wrap !important;
+  }

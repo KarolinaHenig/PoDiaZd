@@ -35,6 +35,7 @@
                     </mat-option>
             </mat-autocomplete>
             </mat-form-field>
+            
             <mat-nav-list role="list" *ngIf="this.firstFormGroup.controls['city'].value" class="list">
                 <mat-list-item (click)="onSelect(carRepairShop, stepper)" *ngFor="let carRepairShop of carRepairShops">
                     <button mat-icon-button (click)="openDialog(carRepairShop, this.firstFormGroup.controls['city'].value, this.firstFormGroup.controls['voivodeship'].value)" matListItemMeta>
@@ -45,7 +46,6 @@
                 </mat-list-item>
             </mat-nav-list>
             <button mat-raised-button class="button" *ngIf="this.firstFormGroup.controls['city'].value" routerLink="/add-car-repair-shop">+ DODAJ WARSZTAT</button>
-
         </form>
     </mat-step>
 

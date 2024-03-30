@@ -22,6 +22,7 @@ class Malfunction {
     @JsonIgnore
     private Category category
 
+    private String description
     private String engineType
     private String gearboxType
     private String gearboxSubtype
@@ -49,6 +50,14 @@ class Malfunction {
 
     void setCategory(Category category) {
         this.category = category
+    }
+
+    String getDescription() {
+        return description
+    }
+
+    void setDescription(String description) {
+        this.description = description
     }
 
     String getEngineType() {

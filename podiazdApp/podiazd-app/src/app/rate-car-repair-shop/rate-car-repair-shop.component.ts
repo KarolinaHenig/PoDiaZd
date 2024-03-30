@@ -54,7 +54,7 @@ export class RateCarRepairShopComponent implements OnInit {
   constructor(private http: HttpClient, private _formBuilder: FormBuilder, public dialog: MatDialog, private router: Router) { }
   openDialog(carRepairShop: any, city: any, voivodeship: any): void {
     const dialogRef = this.dialog.open(DialogOverviewExampleDialog, {
-      data: { carRepairShop, city, voivodeship },
+      data: {carRepairShop, city, voivodeship},
     });
 
     dialogRef.afterClosed().subscribe(result => {

@@ -1,16 +1,14 @@
 <mat-horizontal-stepper [linear]="isLinear" #stepper>
     <mat-step [stepControl]="firstFormGroup">
         <form [formGroup]="firstFormGroup">
-           <ng-template matStepLabel>Car selection</ng-template> 
-
-
+            <ng-template matStepLabel>Car selection</ng-template>
 
             <mat-form-field class="select">
                 <mat-label>Brand</mat-label>
                 <input matInput type="text" placeholder="Brand" formControlName="brand" [matAutocomplete]="auto"
                     class="example-input">
-                <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayBrand">
-                    <mat-option *ngFor="let brand of brands" [value]="brand">
+                <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete" [displayWith]="displayBrand">
+                    <mat-option *ngFor="let brand of filteredBrands" [value]="brand">
                         {{brand.brandName}}
                     </mat-option>
                 </mat-autocomplete>
@@ -20,8 +18,8 @@
                 <mat-label>Model</mat-label>
                 <input matInput type="text" placeholder="Model" formControlName="model" [matAutocomplete]="auto2"
                     class="example-input">
-                <mat-autocomplete #auto2="matAutocomplete" [displayWith]="displayModel">
-                    <mat-option *ngFor="let model of models" [value]="model">
+                <mat-autocomplete autoActiveFirstOption #auto2="matAutocomplete" [displayWith]="displayModel">
+                    <mat-option *ngFor="let model of filteredModels" [value]="model">
                         {{model.modelName}}
                     </mat-option>
                 </mat-autocomplete>
@@ -31,8 +29,8 @@
                 <mat-label>Generation</mat-label>
                 <input matInput type="text" placeholder="Generation" formControlName="generation"
                     [matAutocomplete]="auto3" class="example-input">
-                <mat-autocomplete #auto3="matAutocomplete" [displayWith]="displayGeneration">
-                    <mat-option *ngFor="let generation of generations" [value]="generation">
+                <mat-autocomplete autoActiveFirstOption #auto3="matAutocomplete" [displayWith]="displayGeneration">
+                    <mat-option *ngFor="let generation of filteredGenerations" [value]="generation">
                         {{generation.generationName}}
                     </mat-option>
                 </mat-autocomplete>
@@ -42,19 +40,20 @@
                 <mat-label>Body type</mat-label>
                 <input matInput type="text" placeholder="Body type" formControlName="bodyType" [matAutocomplete]="auto4"
                     class="example-input">
-                <mat-autocomplete #auto4="matAutocomplete" [displayWith]="displayBodyType">
-                    <mat-option *ngFor="let bodyType of bodyTypes" [value]="bodyType">
+                <mat-autocomplete autoActiveFirstOption #auto4="matAutocomplete" [displayWith]="displayBodyType">
+                    <mat-option *ngFor="let bodyType of filteredBodyTypes" [value]="bodyType">
                         {{bodyType.bodyTypeName}}
                     </mat-option>
                 </mat-autocomplete>
             </mat-form-field>
 
-            <mat-form-field class="select" *ngIf="this.firstFormGroup.controls['bodyType'].value">
+            <mat-form-field class="select"
+                *ngIf="this.firstFormGroup.controls['bodyType'].value && this.firstFormGroup.controls['generation'].value">
                 <mat-label>Modification</mat-label>
                 <input matInput type="text" placeholder="Modification" formControlName="modification"
                     [matAutocomplete]="auto5" class="example-input">
-                <mat-autocomplete #auto5="matAutocomplete" [displayWith]="displayModification">
-                    <mat-option *ngFor="let modification of modifications" [value]="modification">
+                <mat-autocomplete autoActiveFirstOption #auto5="matAutocomplete" [displayWith]="displayModification">
+                    <mat-option *ngFor="let modification of filteredModifications" [value]="modification">
                         {{modification.modificationName}}
                     </mat-option>
                 </mat-autocomplete>
@@ -68,52 +67,56 @@
     <mat-step [stepControl]="secondFormGroup">
         <form [formGroup]="secondFormGroup">
             <ng-template matStepLabel>Malfunction selection</ng-template>
-
             <mat-form-field class="select">
                 <mat-label>Category</mat-label>
                 <input matInput type="text" placeholder="Category" formControlName="category" [matAutocomplete]="auto8"
                     class="example-input">
-                <mat-autocomplete #auto8="matAutocomplete" [displayWith]="displayCategory">
-                    <mat-option *ngFor="let category of categories" [value]="category">
+                <mat-autocomplete autoActiveFirstOption #auto8="matAutocomplete" [displayWith]="displayCategory">
+                    <mat-option *ngFor="let category of filteredCategories" [value]="category">
                         {{category.categoryName}}
                     </mat-option>
                 </mat-autocomplete>
             </mat-form-field>
 
-            <mat-form-field class="select" *ngIf="this.secondFormGroup.controls['category'].value">
-                <mat-label>Description on malfunction</mat-label>
-                <input matInput type="text" placeholder="Description on malfunction" formControlName="malfunctionDescription" [matAutocomplete]="auto9"
-                    class="example-input">
-                <mat-autocomplete #auto9="matAutocomplete" [displayWith]="displayMalfunctionDescription">
-                </mat-autocomplete> 
+            <mat-form-field *ngIf="this.secondFormGroup.controls['category'].value" class="text">
+                <mat-label>Key words</mat-label>
+                <input matInput type="text" placeholder="Key words" formControlName="keyWords" class="example-input">
             </mat-form-field>
+
+            <mat-nav-list role="list" *ngIf="this.secondFormGroup.controls['category'].value" class="list">
+                <mat-list-item (click)="onSelectMalfunction(malfunction, stepper)" *ngFor="let malfunction of sortedMalfunctions">
+                    <p matLine>
+                        <span *ngFor="let item of displayMalfunctionTextItems(malfunction)"
+                            [ngClass]="{'malfunction-highlight': item.highlight}">{{item.text}}</span>
+                    </p>
+                </mat-list-item>
+            </mat-nav-list>
             <div>
                 <button mat-stroked-button matStepperPrevious class="button">Back</button>
-                <button mat-raised-button matStepperNext class="button">Next</button>
             </div>
         </form>
     </mat-step>
     <mat-step [stepControl]="thirdFormGroup">
         <form [formGroup]=" thirdFormGroup">
-            <ng-template matStepLabel>Locality selection</ng-template>
 
+            <ng-template matStepLabel>Locality selection</ng-template>
             <mat-form-field class="select">
                 <mat-label>Voivodeship</mat-label>
                 <input matInput type="text" placeholder="Voivodeship" formControlName="voivodeship" [matAutocomplete]="auto10"
                 class="example-input">
-                <mat-autocomplete #auto10="matAutocomplete" [displayWith]="displayVoivodeship">
-                    <mat-option *ngFor="let voivodeship of voivodeships" [value]="voivodeship">
+                <mat-autocomplete  autoActiveFirstOption #auto10="matAutocomplete" [displayWith]="displayVoivodeship">
+                    <mat-option *ngFor="let voivodeship of filteredVoivodeships" [value]="voivodeship">
                         {{voivodeship.voivodeshipName}}
                     </mat-option>
             </mat-autocomplete>
             </mat-form-field>
-            
-            <mat-form-field class="select" *ngIf="this.thirdFormGroup.controls['voivodeship'].value">
+
+             <mat-form-field class="select" *ngIf="this.thirdFormGroup.controls['voivodeship'].value">
                 <mat-label>County</mat-label>
                 <input matInput type="text" placeholder="County" formControlName="county" [matAutocomplete]="auto11"
                 class="example-input">
-                <mat-autocomplete #auto11="matAutocomplete" [displayWith]="displayCounty">
-                    <mat-option *ngFor="let county of counties" [value]="county">
+                <mat-autocomplete autoActiveFirstOption #auto11="matAutocomplete" [displayWith]="displayCounty">
+                    <mat-option *ngFor="let county of filteredCounties" [value]="county">
                         {{county.countyName}}
                     </mat-option>
             </mat-autocomplete>
@@ -121,33 +124,54 @@
 
             <mat-form-field class="select" *ngIf="this.thirdFormGroup.controls['county'].value">
                 <mat-label>City</mat-label>
-                <input matInput type="text" placeholder="City" formControlName="city" [matAutocomplete]="auto11"
+                <input matInput type="text" placeholder="City" formControlName="city" [matAutocomplete]="auto12"
                 class="example-input">
-                <mat-autocomplete #auto11="matAutocomplete" [displayWith]="displayCity">
-                    <mat-option *ngFor="let city of cities" [value]="city">
+                <mat-autocomplete autoActiveFirstOption #auto12="matAutocomplete" [displayWith]="displayCity">
+                    <mat-option *ngFor="let city of filteredCities" [value]="city">
                         {{city.cityName}}
                     </mat-option>
             </mat-autocomplete>
             </mat-form-field>
 
-            <mat-list role="list" *ngIf="this.thirdFormGroup.controls['city'].value" class="list">
-                <mat-list-item role="listitem">Item 1
-                    <button mat-icon-button (click)="showInfo">
-                        <mat-icon>info</mat-icon>
-                    </button>
-                </mat-list-item>
-                <mat-list-item role="listitem">Item 2
-                    <button mat-icon-button (click)="showInfo">
-                        <mat-icon>info</mat-icon>
-                    </button>
-                </mat-list-item>
-                <mat-list-item role="listitem">Item 3
-                    <button mat-icon-button (click)="showInfo">
-                        <mat-icon>info</mat-icon>
-                    </button>
-                </mat-list-item>
-            </mat-list>
+            <table class="car-repair-shops-table" *ngIf="this.thirdFormGroup.controls['city'].value?.id" mat-table [dataSource]="carRepairShops">
+                <ng-container matColumnDef="carRepairShopName">
+                    <th mat-header-cell *matHeaderCellDef> Nazwa </th>
+                    <td mat-cell *matCellDef="let carRepairShop">{{carRepairShop.carRepairShopName}}</td>
+                  </ng-container>
 
+                  <ng-container matColumnDef="address">
+                    <th mat-header-cell *matHeaderCellDef> Adres </th>
+                    <td mat-cell *matCellDef="let carRepairShop">ul.{{carRepairShop.street}} {{carRepairShop.houseNumber}}, {{carRepairShop.city.cityName}}</td>
+                  </ng-container>
+
+                  <ng-container matColumnDef="averageRate">
+                    <th mat-header-cell *matHeaderCellDef>Ocena ogólna</th>
+                    <td mat-cell *matCellDef="let carRepairShop">{{carRepairShop.averageRate}}</td>
+                  </ng-container>
+
+                  <ng-container matColumnDef="averageRateCar">
+                    <th mat-header-cell *matHeaderCellDef>Ocena marki</th>
+                    <td mat-cell *matCellDef="let carRepairShop">{{carRepairShop.averageRateCar}}</td>
+                  </ng-container>
+
+                  <ng-container matColumnDef="averageRateMalfunction">
+                    <th mat-header-cell *matHeaderCellDef>Ocena usterki</th>
+                    <td mat-cell *matCellDef="let carRepairShop">{{carRepairShop.averageRateMalfunction}}</td>
+                  </ng-container>
+
+                  <ng-container matColumnDef="opinion">
+                    <th mat-header-cell *matHeaderCellDef>Opinie</th>
+                    <td mat-cell *matCellDef="let carRepairShop">                      
+                        <button mat-icon-button (click)="openDialog(carRepairShop)" matListItemMeta>
+                        <mat-icon> chat_bubble_outline</mat-icon>
+                     </button>        
+                  </ng-container>
+
+
+                  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            </table>
+ 
             <div>
                 <button mat-stroked-button matStepperPrevious class="button">Back</button>
             </div>

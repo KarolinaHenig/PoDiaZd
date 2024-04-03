@@ -102,6 +102,15 @@ class CarRepairShopController {
         return ["opinions": carRepairShopRateSortedList]
     }
 
+    @PostMapping(path = "malfunction-history")
+    Map displayMalfunctionHistory(Principal principal) {
+        UsernamePasswordAuthenticationToken auth = principal as UsernamePasswordAuthenticationToken
+        AppUser appUser = auth.getPrincipal() as AppUser
+
+        List<CarRepairShopRate> carRepairShopRateList = carRepairShopRateRepository.findAllByAppUserId(appUser.id)
+        return ["carRepairShopRateList": carRepairShopRateList]
+    }
+
     private static Double avgRate(List<Double> carRepairShopRates) {
         Integer carRepairShopRateSize = carRepairShopRates.size()
         Double sumRates = 0

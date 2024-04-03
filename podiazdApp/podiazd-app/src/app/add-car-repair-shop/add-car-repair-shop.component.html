@@ -3,17 +3,17 @@
         <ng-template matStepLabel>Select car repair shop</ng-template>
 
 
-        <mat-card-title>Add car repair shop</mat-card-title>
+        <mat-card-title>Dodaj warsztat samochodowy</mat-card-title>
         <mat-form-field class="select">
-            <mat-label>Car repair shop name</mat-label>
-            <input matInput placeholder="Car repair shop name" [formControl]="carRepairShopName" carRepairShopName
+            <mat-label>Nazwa warsztatu</mat-label>
+            <input matInput placeholder="Nazwa warsztatu" [formControl]="carRepairShopName" carRepairShopName
                 required>
             <mat-error *ngIf="carRepairShopName.invalid">{{getErrorMessageName()}}</mat-error>
         </mat-form-field>
 
         <mat-form-field class="select">
-            <mat-label>Voivodeship</mat-label>
-            <input matInput type="text" placeholder="Voivodeship" formControlName="voivodeship"
+            <mat-label>Województwo</mat-label>
+            <input matInput type="text" placeholder="Województwo" formControlName="voivodeship"
                 [matAutocomplete]="auto10" class="example-input">
             <mat-autocomplete #auto10="matAutocomplete" [displayWith]="displayVoivodeship">
                 <mat-option *ngFor="let voivodeship of voivodeships" [value]="voivodeship">
@@ -24,8 +24,8 @@
         </mat-form-field>
 
         <mat-form-field class="select">
-            <mat-label>County</mat-label>
-            <input matInput type="text" placeholder="County" formControlName="county" [matAutocomplete]="auto11"
+            <mat-label>Powiat</mat-label>
+            <input matInput type="text" placeholder="Powiat" formControlName="county" [matAutocomplete]="auto11"
                 class="example-input">
             <mat-autocomplete #auto11="matAutocomplete" [displayWith]="displayCounty">
                 <mat-option *ngFor="let county of counties" [value]="county">
@@ -36,8 +36,8 @@
         </mat-form-field>
 
         <mat-form-field class="select">
-            <mat-label>City</mat-label>
-            <input matInput type="text" placeholder="City"  formControlName="city" [matAutocomplete]="auto12"
+            <mat-label>Miasto</mat-label>
+            <input matInput type="text" placeholder="Mikołów"  formControlName="city" [matAutocomplete]="auto12"
                 class="example-input">
             <mat-autocomplete #auto12="matAutocomplete" [displayWith]="displayCity">
                 <mat-option *ngFor="let city of cities" [value]="city">
@@ -48,30 +48,30 @@
         </mat-form-field>
 
         <mat-form-field>
-            <mat-label>Street</mat-label>
+            <mat-label>Ulica</mat-label>
             <input matInput placeholder="Cicha" [formControl]="street" street required>
             <mat-error *ngIf="street.invalid">{{getErrorMessageStreet()}}</mat-error>
         </mat-form-field>
 
         <mat-form-field>
-            <mat-label>House number</mat-label>
+            <mat-label>Numer domu</mat-label>
             <input matInput type="text" placeholder="35a" [formControl]="houseNumber" required>
             <mat-error *ngIf="houseNumber.invalid">{{getErrorMessageHouseNumber()}}</mat-error>
         </mat-form-field>
 
         <mat-form-field>
-            <mat-label>Phone number</mat-label>
+            <mat-label>Numer telefonu</mat-label>
             <input matInput placeholder="693033540" [formControl]="phoneNumber">
             <mat-error *ngIf="phoneNumber.invalid">{{getErrorMessagePhoneNumber()}}</mat-error>
             <mat-icon matSuffix>phone</mat-icon>
         </mat-form-field>
 
         <mat-form-field>
-            <mat-label>Enter your email</mat-label>
+            <mat-label>Adres email</mat-label>
             <input matInput placeholder="pat@example.com" [formControl]="email" email required>
             <mat-error *ngIf="email.invalid">{{getErrorMessageMail()}}</mat-error>
             <mat-icon matSuffix>mail</mat-icon>
         </mat-form-field>
-        <button mat-raised-button class="form-button" (click)="add()">Add</button>
+        <button mat-raised-button class="form-button" (click)="add()">Dodaj</button>
     </form>
 </mat-card>

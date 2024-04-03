@@ -1,0 +1,32 @@
+<mat-card><h1> Historia napraw</h1></mat-card>
+
+<table class="car-repair-shops-table"  mat-table [dataSource]="carRepairShops">
+    <ng-container matColumnDef="carRepairShopName">
+        <th mat-header-cell *matHeaderCellDef>Nazwa</th>
+        <td mat-cell *matCellDef="let carRepairShopRate">{{carRepairShopRate.carRepairShop.carRepairShopName}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="address">
+        <th mat-header-cell *matHeaderCellDef> Adres </th>
+        <td mat-cell *matCellDef="let carRepairShopRate">ul.{{carRepairShopRate.carRepairShop.street}} {{carRepairShopRate.carRepairShop.houseNumber}}, {{carRepairShopRate.carRepairShop.city.cityName}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="malfunction">
+        <th mat-header-cell *matHeaderCellDef>Awaria</th>
+        <td mat-cell *matCellDef="let carRepairShopRate">{{carRepairShopRate.malfunction.malfunctionName}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="car">
+        <th mat-header-cell *matHeaderCellDef>Samochód</th>
+        <td mat-cell *matCellDef="let carRepairShopRate">{{carRepairShopRate.brand.brandName}} {{carRepairShopRate.model.modelName}} {{carRepairShopRate.generation.generationName}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="myRate">
+        <th mat-header-cell *matHeaderCellDef>Moja ocena</th>
+        <td mat-cell *matCellDef="let carRepairShopRate">{{carRepairShopRate.rate}}/5</td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+

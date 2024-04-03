@@ -6,4 +6,5 @@ import org.springframework.stereotype.Repository
 @Repository
 interface CarRepairShopRateRepository extends CrudRepository<CarRepairShopRate, Long> {
     List<CarRepairShopRate> findAllByCarRepairShopId(long cityId)
+    List<CarRepairShopRate> findAllByAppUserId(long appUserId)
 }

@@ -27,6 +27,7 @@ import { MatDialogModule} from '@angular/material/dialog';
 import {MatSliderModule} from '@angular/material/slider';
 import { StarRatingComponent } from './star-rating/star-rating.component';
 import {MatTableModule} from '@angular/material/table';
+import { MalfunctionHistoryComponent } from './malfunction-history/malfunction-history.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import {MatTableModule} from '@angular/material/table';
     FindCarRepairShopComponent,
     RateCarRepairShopComponent,
     AddCarRepairShopComponent,
-    StarRatingComponent
+    StarRatingComponent,
+    MalfunctionHistoryComponent
   ],
 
   imports: [

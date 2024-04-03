@@ -1,18 +1,15 @@
+
 mat-card {
     width: 30%;
     margin-left: 35%;
     margin-right: 35%;
-    margin-top: 20px;
+    margin-top: 30px;
     bottom: 20px;
-    position: relative;
+    display: block;
 }
 mat-form-field {
     display: block;
     flex-direction: column;
     align-items: flex-start;
     width: 100%;
-    margin-top: 1rem;
-}
-.form-button{
-    margin-top: 1rem;
 }

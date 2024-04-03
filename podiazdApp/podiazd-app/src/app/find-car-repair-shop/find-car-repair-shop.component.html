@@ -1,11 +1,11 @@
 <mat-horizontal-stepper [linear]="isLinear" #stepper>
     <mat-step [stepControl]="firstFormGroup">
         <form [formGroup]="firstFormGroup">
-            <ng-template matStepLabel>Car selection</ng-template>
+            <ng-template matStepLabel>Wybór samochodu</ng-template>
 
             <mat-form-field class="select">
-                <mat-label>Brand</mat-label>
-                <input matInput type="text" placeholder="Brand" formControlName="brand" [matAutocomplete]="auto"
+                <mat-label>Marka</mat-label>
+                <input matInput type="text" placeholder="Marka" formControlName="brand" [matAutocomplete]="auto"
                     class="example-input">
                 <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete" [displayWith]="displayBrand">
                     <mat-option *ngFor="let brand of filteredBrands" [value]="brand">
@@ -26,8 +26,8 @@
             </mat-form-field>
 
             <mat-form-field class="select" *ngIf="this.firstFormGroup.controls['model'].value">
-                <mat-label>Generation</mat-label>
-                <input matInput type="text" placeholder="Generation" formControlName="generation"
+                <mat-label>Generacja</mat-label>
+                <input matInput type="text" placeholder="Generacja" formControlName="generation"
                     [matAutocomplete]="auto3" class="example-input">
                 <mat-autocomplete autoActiveFirstOption #auto3="matAutocomplete" [displayWith]="displayGeneration">
                     <mat-option *ngFor="let generation of filteredGenerations" [value]="generation">
@@ -37,8 +37,8 @@
             </mat-form-field>
 
             <mat-form-field class="select" *ngIf="this.firstFormGroup.controls['generation'].value">
-                <mat-label>Body type</mat-label>
-                <input matInput type="text" placeholder="Body type" formControlName="bodyType" [matAutocomplete]="auto4"
+                <mat-label>Typ nadwozia</mat-label>
+                <input matInput type="text" placeholder="Typ nadwozia" formControlName="bodyType" [matAutocomplete]="auto4"
                     class="example-input">
                 <mat-autocomplete autoActiveFirstOption #auto4="matAutocomplete" [displayWith]="displayBodyType">
                     <mat-option *ngFor="let bodyType of filteredBodyTypes" [value]="bodyType">
@@ -49,8 +49,8 @@
 
             <mat-form-field class="select"
                 *ngIf="this.firstFormGroup.controls['bodyType'].value && this.firstFormGroup.controls['generation'].value">
-                <mat-label>Modification</mat-label>
-                <input matInput type="text" placeholder="Modification" formControlName="modification"
+                <mat-label>Modyfikacja</mat-label>
+                <input matInput type="text" placeholder="Modyfikacja" formControlName="modification"
                     [matAutocomplete]="auto5" class="example-input">
                 <mat-autocomplete autoActiveFirstOption #auto5="matAutocomplete" [displayWith]="displayModification">
                     <mat-option *ngFor="let modification of filteredModifications" [value]="modification">
@@ -60,16 +60,16 @@
             </mat-form-field>
 
             <div>
-                <button mat-raised-button matStepperNext class="button">Next</button>
+                <button mat-raised-button matStepperNext class="button">Dalej</button>
             </div>
         </form>
     </mat-step>
     <mat-step [stepControl]="secondFormGroup">
         <form [formGroup]="secondFormGroup">
-            <ng-template matStepLabel>Malfunction selection</ng-template>
+            <ng-template matStepLabel>Wybór usterki</ng-template>
             <mat-form-field class="select">
-                <mat-label>Category</mat-label>
-                <input matInput type="text" placeholder="Category" formControlName="category" [matAutocomplete]="auto8"
+                <mat-label>Kategoria</mat-label>
+                <input matInput type="text" placeholder="Kategoria" formControlName="category" [matAutocomplete]="auto8"
                     class="example-input">
                 <mat-autocomplete autoActiveFirstOption #auto8="matAutocomplete" [displayWith]="displayCategory">
                     <mat-option *ngFor="let category of filteredCategories" [value]="category">
@@ -79,8 +79,8 @@
             </mat-form-field>
 
             <mat-form-field *ngIf="this.secondFormGroup.controls['category'].value" class="text">
-                <mat-label>Key words</mat-label>
-                <input matInput type="text" placeholder="Key words" formControlName="keyWords" class="example-input">
+                <mat-label>Słowa kluczowe</mat-label>
+                <input matInput type="text" placeholder="Słowa kluczowe" formControlName="keyWords" class="example-input">
             </mat-form-field>
 
             <mat-nav-list role="list" *ngIf="this.secondFormGroup.controls['category'].value" class="list">
@@ -92,17 +92,17 @@
                 </mat-list-item>
             </mat-nav-list>
             <div>
-                <button mat-stroked-button matStepperPrevious class="button">Back</button>
+                <button mat-stroked-button matStepperPrevious class="button">Wstecz</button>
             </div>
         </form>
     </mat-step>
     <mat-step [stepControl]="thirdFormGroup">
         <form [formGroup]=" thirdFormGroup">
 
-            <ng-template matStepLabel>Locality selection</ng-template>
+            <ng-template matStepLabel>Wybór lokalizacji</ng-template>
             <mat-form-field class="select">
-                <mat-label>Voivodeship</mat-label>
-                <input matInput type="text" placeholder="Voivodeship" formControlName="voivodeship" [matAutocomplete]="auto10"
+                <mat-label>Województwo</mat-label>
+                <input matInput type="text" placeholder="Województwo" formControlName="voivodeship" [matAutocomplete]="auto10"
                 class="example-input">
                 <mat-autocomplete  autoActiveFirstOption #auto10="matAutocomplete" [displayWith]="displayVoivodeship">
                     <mat-option *ngFor="let voivodeship of filteredVoivodeships" [value]="voivodeship">
@@ -112,8 +112,8 @@
             </mat-form-field>
 
              <mat-form-field class="select" *ngIf="this.thirdFormGroup.controls['voivodeship'].value">
-                <mat-label>County</mat-label>
-                <input matInput type="text" placeholder="County" formControlName="county" [matAutocomplete]="auto11"
+                <mat-label>Powiat</mat-label>
+                <input matInput type="text" placeholder="Powiat" formControlName="county" [matAutocomplete]="auto11"
                 class="example-input">
                 <mat-autocomplete autoActiveFirstOption #auto11="matAutocomplete" [displayWith]="displayCounty">
                     <mat-option *ngFor="let county of filteredCounties" [value]="county">
@@ -123,8 +123,8 @@
             </mat-form-field>
 
             <mat-form-field class="select" *ngIf="this.thirdFormGroup.controls['county'].value">
-                <mat-label>City</mat-label>
-                <input matInput type="text" placeholder="City" formControlName="city" [matAutocomplete]="auto12"
+                <mat-label>Miasto</mat-label>
+                <input matInput type="text" placeholder="Miasto" formControlName="city" [matAutocomplete]="auto12"
                 class="example-input">
                 <mat-autocomplete autoActiveFirstOption #auto12="matAutocomplete" [displayWith]="displayCity">
                     <mat-option *ngFor="let city of filteredCities" [value]="city">
@@ -135,7 +135,7 @@
 
             <table class="car-repair-shops-table" *ngIf="this.thirdFormGroup.controls['city'].value?.id" mat-table [dataSource]="carRepairShops">
                 <ng-container matColumnDef="carRepairShopName">
-                    <th mat-header-cell *matHeaderCellDef> Nazwa </th>
+                    <th mat-header-cell *matHeaderCellDef>Nazwa</th>
                     <td mat-cell *matCellDef="let carRepairShop">{{carRepairShop.carRepairShopName}}</td>
                   </ng-container>
 
@@ -171,9 +171,9 @@
                   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
                   <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
             </table>
- 
+            <br>
             <div>
-                <button mat-stroked-button matStepperPrevious class="button">Back</button>
+                <button mat-stroked-button matStepperPrevious class="button">Wstecz</button>
             </div>
         </form>
     </mat-step>

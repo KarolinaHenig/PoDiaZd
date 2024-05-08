@@ -5,7 +5,7 @@ server:
 spring:
   datasource:
     password: '12345678'
-    url: jdbc:mysql://localhost:3306/podiazddatabase
+    url: jdbc:mysql://localhost:3306/podiazddb
     username: 'root'
   jpa:
     hibernate:

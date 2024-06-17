@@ -59,22 +59,22 @@ export class RegistrationComponent implements OnInit {
   }
 
   getErrorMessageMail() {
-    return "Please inform your email"
+    return "Wpisz adres email"
   }
   getErrorMessageName() {
-    return "Please inform your name"
+    return "Wpisz imię"
   }
   getErrorMessageSurname() {
-    return "Please inform your surname"
+    return "Wpisz nazwisko"
   }
   getErrorMessagePassword() {
-    return "Please inform your password"
+    return "Wpisz hasło"
   }
   getErrorMessageMinLenght() {
-    return "Passwords must be at least 8 characters"
+    return "Hasło musi posiadać conajmniej 8 znaków"
   }
 
   getErrorPasswordMismatch() {
-    return "Passwords must be match"
+    return "Hasła różnią sie"
   }
 }

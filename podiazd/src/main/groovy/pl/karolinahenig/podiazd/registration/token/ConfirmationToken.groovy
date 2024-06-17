@@ -48,7 +48,6 @@ class ConfirmationToken {
         this.expiresAt = expiresAt
         this.appUser = appUser
     }
-    ConfirmationToken() {}
 
     Long getId() {
         return id

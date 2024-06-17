@@ -1,6 +1,11 @@
 .select{
-    margin: 7%;
+    margin: 3%;
     font-size: 1.2vw;
+}
+.select-big{
+    margin: 3%;
+    font-size: 1.2vw;
+    width: 15vw;
 }
 .list{
     font-size: 1.2vw;
@@ -12,4 +17,18 @@
     margin-left: 7%;
     padding-left: 2%;
     padding-right: 2%;
+}
+.form-button{
+    font-size: 1.1vw;
+    margin-left: 7%;
+    padding-left: 2%;
+    padding-right: 2%;
+}
+.input{
+    margin-top: 1%;
+    margin-left: 5%;
+    font-size: 1.2vw;
+    width: 30%;
+    height: auto;
+    word-wrap: normal;
 }

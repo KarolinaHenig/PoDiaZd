@@ -25,7 +25,7 @@
             </mat-autocomplete>
             </mat-form-field>
 
-            <mat-form-field class="select" *ngIf="this.firstFormGroup.controls['county'].value">
+            <mat-form-field class="select-big" *ngIf="this.firstFormGroup.controls['county'].value">
                 <mat-label>Miasto</mat-label>
                 <input matInput type="text" placeholder="Miasto" formControlName="city" [matAutocomplete]="auto12"
                 class="example-input">
@@ -142,11 +142,11 @@
     <mat-step [stepControl]="fourthFormGroup">
         <form [formGroup]="fourthFormGroup">
             <ng-template matStepLabel>Oceń warsztat</ng-template>
-            <app-star-rating (ratingUpdated)="setRating($event)"></app-star-rating>
+            <app-star-rating class="input" (ratingUpdated)="setRating($event)"></app-star-rating>
             <mat-form-field class="input">
                 <mat-label>Opinia</mat-label>
-                <input matInput type="text" placeholder="Opinia" formControlName="opinion" [matAutocomplete]="auto9"
-                    class="example-input">
+                <textarea matInput style="height: 225px;" type="text" placeholder="Opinia" formControlName="opinion" [matAutocomplete]="auto9"
+                    class="example-input"></textarea>
                 <mat-autocomplete #auto9="matAutocomplete" [displayWith]="displayCategory">
                 </mat-autocomplete>
             </mat-form-field>

@@ -47,12 +47,12 @@ export class LoginComponent implements OnInit {
   }
 
   getErrorMessageMail() {
-    return "Please inform your email"
+    return "Podaj adres email"
   }
   getErrorMessagePassword() {
-    return "Please inform your password"
+    return "Podaj hasło"
   }
   getErrorMessageWrongEmail() {
-    return "Email address or password is wrong"
+    return "Nieprawidłowy adres email lub hasło"
   }
 }

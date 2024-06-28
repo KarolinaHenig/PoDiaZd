@@ -46,6 +46,8 @@ class AppUser implements UserDetails {
         this.enabled = enabled
     }
 
+    AppUser() {}
+
     @Override
     Collection<? extends GrantedAuthority> getAuthorities() {
         SimpleGrantedAuthority authority =

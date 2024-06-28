@@ -51,34 +51,22 @@ class CarRepairShopController {
         AppUser appUser = auth.getPrincipal() as AppUser
         params.appUser = appUser
 
-        List<CarRepairShop> carRepairShopList = carRepairShopRepository.findAll()
-        for (CarRepairShop carRepairShop : carRepairShopList) {
-            List<CarRepairShopRate> carRepairShopRateList = carRepairShopRateRepository.findAllByCarRepairShopId(carRepairShop.id)
-
-            carRepairShop.averageRate = avgRate(carRepairShopRateList*.rate) ?: "Brak ocen"
-
-            List<CarRepairShopRate> carRepairShopRateBrandList = carRepairShopRateList.findAll { it.brand.id == params.brandId }
-            carRepairShop.averageRateCar = avgRate(carRepairShopRateBrandList*.rate) ?: "Brak ocen"
-
-            List<CarRepairShopRate> carRepairShopRateMalfunctionList = carRepairShopRateList.findAll { it.malfunction.id == params.malfunctionId }
-            carRepairShop.averageRateMalfunction = avgRate(carRepairShopRateMalfunctionList*.rate) ?: "Brak ocen"
-
-            carRepairShopRepository.save(carRepairShop)
-        }
-        List<CarRepairShop> carRepairShops = carRepairShopRepository.findAll()
         City city = cityRepository.findById(params.cityId as Long).get()
         County county = city.county
         Voivodeship voivodeship = county.voivodeship
 
-        List<CarRepairShop> carRepairShopListCity = carRepairShops.findAll { it.city.id == params.cityId }
-        List<CarRepairShop> carRepairShopListCounty = carRepairShops.findAll { it.city.county.id == county.id && it.city.id != params.cityId }
-        List<CarRepairShop> carRepairShopListVoivodeship = carRepairShops.findAll { it.voivodeship.id == voivodeship.id && it.city.county.id != county.id }
-        List<CarRepairShop> carRepairShopListInCountry = carRepairShops.findAll { it.voivodeship.id != voivodeship.id }
-        List<CarRepairShop> carRepairShopSortedList = []
-        carRepairShopSortedList.addAll(carRepairShopListCity)
-        carRepairShopSortedList.addAll(carRepairShopListCounty)
-        carRepairShopSortedList.addAll(carRepairShopListVoivodeship)
-        carRepairShopSortedList.addAll(carRepairShopListInCountry)
+        List<Map<String,Object>> calculatedRates = carRepairShopRateRepository.findBestsRates(
+                params.brandId as long, params.malfunctionId as long, params.cityId as long, county.id , voivodeship.id)
+
+        String noRates = "Brak ocen"
+        List<CarRepairShop> carRepairShopSortedList = calculatedRates.collect {
+            CarRepairShop carRepairShop = carRepairShopRepository.findById(it.id as long).get() as CarRepairShop
+            carRepairShop.averageRate = it.average ?: noRates
+            carRepairShop.averageRateCar = it.averageBrand ?: noRates
+            carRepairShop.averageRateMalfunction = it.averageMalfunction ?: noRates
+            return carRepairShop
+        }
+
         return ["carRepairShops": carRepairShopSortedList]
     }
 

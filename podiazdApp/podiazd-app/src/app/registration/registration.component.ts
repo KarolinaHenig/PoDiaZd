@@ -43,9 +43,9 @@ export class RegistrationComponent implements OnInit {
       "email": this.email.value,
       "password": this.password.value,
       "repeatPassword": this.repeatPassword.value
-    }).subscribe(data => {
+    }).subscribe((data : any) => {
       console.log(data)
-      this.router.navigateByUrl('/home-page')
+      this.router.navigateByUrl('/login')  
     })
     console.log("register")
   }

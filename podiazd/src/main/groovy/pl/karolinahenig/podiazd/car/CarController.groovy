@@ -45,7 +45,7 @@ class CarController {
 
     @PostMapping(path = "bodyTypes")
     Map selectBodyTypes(@RequestBody Map<String, Object> params) {
-        Long generationValue = params.generationValue as Long
+        Long generationValue = (params.generationValue ?: 0) as Long
         Optional<Generation> generation = generationRepository.findById(generationValue)
         if (generation.isPresent()) {
             List<BodyType> bodyTypes = bodyTypeRepository.findAllByGenerations(generation.get())
@@ -53,6 +53,7 @@ class CarController {
         }
         return [:]
     }
+
     @PostMapping(path = "modifications")
     Map selectModifications(@RequestBody Map<String, Object> params) {
         String generationValue = params.generationValue
